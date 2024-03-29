@@ -1,5 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -11,16 +11,22 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class Form {
-    @Test
-    public void t001_setUp() {
+    static FirefoxDriver driver;
+    static WebDriverWait wait; // Déplacez la déclaration ici pour rendre wait accessible dans toute la classe
+
+    @BeforeAll
+    public static void setUp() {
         WebDriverManager.firefoxdriver().setup();
-        FirefoxDriver driver = new FirefoxDriver();
+        driver = new FirefoxDriver();
         driver.get("https://testpages.herokuapp.com/styled/basic-html-form-test.html");
         driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Initialisez wait ici
+    }
 
-        // Ajouter une attente explicite
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    @Test
+    public void t001_setUp() {
 
         // Remplissage du formulaire
         WebElement username = driver.findElement(By.cssSelector("input[name='username']"));
@@ -44,11 +50,13 @@ public class Form {
         checkbox3.click();
         radio1.click();
         msv1.click();
-        // Maintenir la touche CTRL pour sélectionner plusieurs options dans un menu déroulant multiple
         msv4.click();
         dropdown2.click();
         submit.click();
+    }
 
+@Test
+        public void t002_checkFields(){
         // Vérifications
         WebElement chkUsername = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("_valueusername")));
         assertEquals("Udemy", chkUsername.getText());
@@ -75,8 +83,9 @@ public class Form {
         WebElement chkDropdown = driver.findElement(By.id("_valuedropdown"));
         assertEquals("dd2", chkDropdown.getText());
 
-        //TestFred
-
+    }
+    @AfterAll
+    public static void tearDown(){
         driver.quit();
     }
 }
