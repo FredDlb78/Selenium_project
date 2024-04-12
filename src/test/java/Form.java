@@ -30,7 +30,7 @@ public class Form {
         MainPage objMainPage = new MainPage(driver);
 
         // Remplissage du formulaire
-        objMainPage.fillUsername("Udemy");
+        objMainPage.setUsername("Udemy");
         objMainPage.fillPassword("Test@1234");
         objMainPage.clearTextArea();
         objMainPage.fillTextArea("Ceci est un commentaire");

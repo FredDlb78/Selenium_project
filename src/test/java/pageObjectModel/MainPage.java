@@ -3,16 +3,21 @@ package pageObjectModel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class MainPage {
+    //Initialisation des pages Factory
+    @FindBy(css = "input[name='username']")
+            private WebElement usernameInput;
 
     WebDriver driver;
+    // Constructeur de notre Page Object
     public MainPage(WebDriver driver){
         this.driver = driver;
+        PageFactory.initElements(driver,this);
     }
-    public WebElement username(){
-        return driver.findElement(By.cssSelector("input[name='username']"));
-    }
+
     public WebElement password(){
         return driver.findElement(By.cssSelector("input[name='password']"));
     }
@@ -36,9 +41,11 @@ public class MainPage {
     }
     public WebElement submit(){
         return driver.findElement(By.cssSelector("input[value='submit']"));
+
+
     }
-    public void fillUsername(String username){
-        username().sendKeys(username);
+    public void setUsername(String username){
+        usernameInput.sendKeys(username);
     }
     public void fillPassword(String password){
         password().sendKeys(password);
