@@ -5,9 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjectModel.MainPage;
 
 import java.time.Duration;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -27,34 +27,22 @@ public class Form {
 
     @Test
     public void t001_setUp() {
+        MainPage objMainPage = new MainPage(driver);
 
         // Remplissage du formulaire
-        WebElement username = driver.findElement(By.cssSelector("input[name='username']"));
-        WebElement password = driver.findElement(By.cssSelector("input[name='password']"));
-        WebElement textArea = driver.findElement(By.cssSelector("textarea[name='comments']"));
-        WebElement filename = driver.findElement(By.cssSelector("input[name='filename']"));
-        WebElement checkbox2 = driver.findElement(By.cssSelector("input[value='cb2']"));
-        WebElement checkbox3 = driver.findElement(By.cssSelector("input[value='cb3']"));
-        WebElement radio1 = driver.findElement(By.xpath("//input[@value='rd1']"));
-        WebElement msv1 = driver.findElement(By.cssSelector("option[value='ms1']"));
-        WebElement msv4 = driver.findElement(By.cssSelector("option[value='ms4']"));
-        WebElement dropdown2 = driver.findElement(By.cssSelector("option[value='dd2']"));
-        WebElement submit = driver.findElement(By.cssSelector("input[value='submit']"));
-
-        username.sendKeys("Udemy");
-        password.sendKeys("Test@1234");
-        textArea.clear();
-        textArea.sendKeys("Ceci est un commentaire");
-        filename.sendKeys("C:\\Users\\frede\\IdeaProjects\\Selenium_project\\target\\images\\image.avif");
-        checkbox2.click();
-        checkbox3.click();
-        radio1.click();
-        msv1.click();
-        msv4.click();
-        dropdown2.click();
-        submit.click();
+        objMainPage.fillUsername("Udemy");
+        objMainPage.fillPassword("Test@1234");
+        objMainPage.clearTextArea();
+        objMainPage.fillTextArea("Ceci est un commentaire");
+        objMainPage.uploadFilename("C:\\Users\\frede\\IdeaProjects\\Selenium_project\\target\\images\\image.avif");
+        objMainPage.clickCheckbox("cb2");
+        objMainPage.clickCheckbox("cb3");
+        objMainPage.clickRadio("rd1");
+        objMainPage.selectMsv("ms1");
+        objMainPage.selectMsv("ms4");
+        objMainPage.clickDropdown2();
+        objMainPage.clickSubmit();
     }
-
 @Test
         public void t002_checkFields(){
         // Vérifications
