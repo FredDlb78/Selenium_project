@@ -18,7 +18,7 @@ public class ProductPage {
             private WebElement filterButton;
     @FindBy(xpath = "//option[@value='lohi']")
             private WebElement filterLoHi;
-    @FindBy(xpath ="//div[@class='inventory_item_price'")
+    @FindBy(xpath ="//div[@class='inventory_item_price']")
             private List<WebElement> listPrice;
 
         WebDriver driver;
@@ -54,7 +54,7 @@ public class ProductPage {
                 }
                 previous = current;
             };
-            return false;
+            return true;
 
         }
     }
