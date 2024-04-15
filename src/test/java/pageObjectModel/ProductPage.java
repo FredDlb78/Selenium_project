@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import javax.swing.text.html.CSS;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ProductPage {
@@ -43,6 +44,16 @@ public class ProductPage {
             for(WebElement orderList: listPrice){
                 list.add(orderList.getText().replaceAll("[^\\d]",""));
             }
+            Iterator<String> iterator = list.iterator();
+            // Convertir le premier élément d'un itérateur en un entier (int)
+            int current, previous = Integer.parseInt(iterator.next());
+            while (iterator.hasNext()){
+                current = Integer.parseInt((iterator.next()));
+                if (previous > current){
+                    return false;
+                }
+                previous = current;
+            };
             return false;
 
         }
