@@ -73,12 +73,28 @@ public class exSauceDemo {
     @Test
 
     public void t005_fillInInformations(){
-        CheckoutInformationPage objCheckoutPage = new CheckoutInformationPage(driver);
-        Assertions.assertTrue(objCheckoutPage.getUrlWebPage().contains("checkout-step-one.html"),
+        CheckoutInformationPage objCheckoutInformationPage = new CheckoutInformationPage(driver);
+        Assertions.assertTrue(objCheckoutInformationPage.getUrlWebPage().contains("checkout-step-one.html"),
                 "Url is not correct");
-        objCheckoutPage.setFirstName();
-        objCheckoutPage.setLastName();
-        objCheckoutPage.setPostalCode();
-        objCheckoutPage.clickContinue();
+        objCheckoutInformationPage.setFirstName();
+        objCheckoutInformationPage.setLastName();
+        objCheckoutInformationPage.setPostalCode();
+        objCheckoutInformationPage.clickContinue();
+    }
+
+    @Test
+
+    public void t006_finishOrder(){
+        CheckoutOverviewPage objCheckoutOverviewPage = new CheckoutOverviewPage(driver);
+        Assertions.assertTrue(objCheckoutOverviewPage.getUrlWebPage().contains("checkout-step-two.html"),
+                "Url is not correct");
+        Assertions.assertEquals(objCheckoutOverviewPage.getTitle(), "Checkout: Overview",
+                "Title is not correct");
+        Assertions.assertTrue(objCheckoutOverviewPage.getProductName().contains("Sauce Labs Bike Light")
+                && objCheckoutOverviewPage.getProductPrice().contains("$9.99"),
+                "Product price or product name is not correct");
+        Assertions.assertEquals(objCheckoutOverviewPage.getTotalPrice(),"Total: $10.79",
+                "Total price is not correct");
+        objCheckoutOverviewPage.clickFinish();
     }
 }
