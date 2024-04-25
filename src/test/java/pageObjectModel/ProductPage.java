@@ -22,8 +22,8 @@ public class ProductPage {
     private List<WebElement> listPrice;
     @FindBy(id = "add-to-cart-sauce-labs-bike-light")
     private WebElement addToCartBikeLight;
-    @FindBy(xpath = "//span[@data-test='shopping-cart-badge'")
-    private WebElement cart;
+    @FindBy(id = "remove-sauce-labs-bike-light")
+            private WebElement removeToCartBikeLight;
 
     WebDriver driver;
 
@@ -66,6 +66,12 @@ public class ProductPage {
     }
     public void clickAddToCartBikeLight() {
         addToCartBikeLight.click();
+    }
+    public boolean isVisibleRemoveToCartBikeLight(){
+        return removeToCartBikeLight.isDisplayed();
+    }
+    public boolean isVisibleAddToCartBikeLight(){
+        return addToCartBikeLight.isDisplayed();
     }
 
 }
