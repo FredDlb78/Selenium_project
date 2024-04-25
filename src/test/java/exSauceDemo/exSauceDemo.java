@@ -6,10 +6,7 @@ import org.bouncycastle.asn1.dvcs.DVCSObjectIdentifiers;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import pageObjectModel.CartPage;
-import pageObjectModel.HeaderPage;
-import pageObjectModel.LoginPage;
-import pageObjectModel.ProductPage;
+import pageObjectModel.*;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class exSauceDemo {
@@ -71,5 +68,17 @@ public class exSauceDemo {
         Assertions.assertEquals(objCartPage.getArticleInCart(), "Sauce Labs Bike Light",
                 "Article in cart is not the one expected");
         objCartPage.clickCheckout();
+    }
+
+    @Test
+
+    public void t005_fillInInformations(){
+        CheckoutInformationPage objCheckoutPage = new CheckoutInformationPage(driver);
+        Assertions.assertTrue(objCheckoutPage.getUrlWebPage().contains("checkout-step-one.html"),
+                "Url is not correct");
+        objCheckoutPage.setFirstName();
+        objCheckoutPage.setLastName();
+        objCheckoutPage.setPostalCode();
+        objCheckoutPage.clickContinue();
     }
 }
