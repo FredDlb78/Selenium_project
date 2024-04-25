@@ -6,6 +6,7 @@ import org.bouncycastle.asn1.dvcs.DVCSObjectIdentifiers;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import pageObjectModel.CartPage;
 import pageObjectModel.HeaderPage;
 import pageObjectModel.LoginPage;
 import pageObjectModel.ProductPage;
@@ -52,10 +53,23 @@ public class exSauceDemo {
         Assertions.assertTrue(objHeaderPage.isArticleAddedInCart(),
                 "Cart does not contains 1 element");
         //Ajout de cette assertion vs le cours
-        try{
+        try {
             Assertions.assertTrue(objProductPage.isVisibleRemoveToCartBikeLight());
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             Assertions.fail("The remove button could not be found.");
         }
+    }
 
-}}
+    @Test
+
+    public void t004_clickOnCartAndCheckArticle(){
+        HeaderPage objHeaderPage = new HeaderPage(driver);
+        CartPage objCartPage = new CartPage(driver);
+        objHeaderPage.clickOnCart();
+        Assertions.assertTrue(objCartPage.getUrlWebPage().contains("cart.html"),
+                "Url is not correct");
+        Assertions.assertEquals(objCartPage.getArticleInCart(), "Sauce Labs Bike Light",
+                "Article in cart is not the one expected");
+        objCartPage.clickCheckout();
+    }
+}
