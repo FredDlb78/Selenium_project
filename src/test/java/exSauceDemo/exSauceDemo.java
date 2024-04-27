@@ -8,6 +8,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import pageObjectModel.*;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class exSauceDemo {
     static FirefoxDriver driver;
@@ -26,7 +28,7 @@ public class exSauceDemo {
         LoginPage objLoginPage = new LoginPage(driver);
         ProductPage objProductPage = new ProductPage(driver);
         objLoginPage.setLoginAsUser();
-        Assertions.assertTrue(objProductPage.getProductPageUrl().contains("inventory.html"),
+        assertTrue(objProductPage.getProductPageUrl().contains("inventory.html"),
                 "Article page is not reached");
 
     }
@@ -36,7 +38,7 @@ public class exSauceDemo {
     public void t002_filterByPrice() {
         ProductPage objProductPage = new ProductPage(driver);
         objProductPage.setFilterLoHi();
-        Assertions.assertTrue(objProductPage.isListInOrder(),
+        assertTrue(objProductPage.isListInOrder(),
                 "List not order correctly");
     }
 
@@ -47,11 +49,11 @@ public class exSauceDemo {
         ProductPage objProductPage = new ProductPage(driver);
         HeaderPage objHeaderPage = new HeaderPage(driver);
         objProductPage.clickAddToCartBikeLight();
-        Assertions.assertTrue(objHeaderPage.isArticleAddedInCart(),
+        assertTrue(objHeaderPage.isArticleAddedInCart(),
                 "Cart does not contains 1 element");
         //Ajout de cette assertion vs le cours
         try {
-            Assertions.assertTrue(objProductPage.isVisibleRemoveToCartBikeLight());
+            assertTrue(objProductPage.isVisibleRemoveToCartBikeLight());
         } catch (NoSuchElementException e) {
             Assertions.fail("The remove button could not be found.");
         }
@@ -63,7 +65,7 @@ public class exSauceDemo {
         HeaderPage objHeaderPage = new HeaderPage(driver);
         CartPage objCartPage = new CartPage(driver);
         objHeaderPage.clickOnCart();
-        Assertions.assertTrue(objCartPage.getUrlWebPage().contains("cart.html"),
+        assertTrue(objCartPage.getUrlWebPage().contains("cart.html"),
                 "Url is not correct");
         Assertions.assertEquals(objCartPage.getArticleInCart(), "Sauce Labs Bike Light",
                 "Article in cart is not the one expected");
@@ -74,7 +76,7 @@ public class exSauceDemo {
 
     public void t005_fillInInformations(){
         CheckoutInformationPage objCheckoutInformationPage = new CheckoutInformationPage(driver);
-        Assertions.assertTrue(objCheckoutInformationPage.getUrlWebPage().contains("checkout-step-one.html"),
+        assertTrue(objCheckoutInformationPage.getUrlWebPage().contains("checkout-step-one.html"),
                 "Url is not correct");
         objCheckoutInformationPage.setFirstName();
         objCheckoutInformationPage.setLastName();
@@ -86,11 +88,12 @@ public class exSauceDemo {
 
     public void t006_finishOrder(){
         CheckoutOverviewPage objCheckoutOverviewPage = new CheckoutOverviewPage(driver);
-        Assertions.assertTrue(objCheckoutOverviewPage.getUrlWebPage().contains("checkout-step-two.html"),
+        assertTrue(objCheckoutOverviewPage.getUrlWebPage().contains("checkout-step-two.html"),
                 "Url is not correct");
         Assertions.assertEquals(objCheckoutOverviewPage.getTitle(), "Checkout: Overview",
                 "Title is not correct");
-        Assertions.assertTrue(objCheckoutOverviewPage.getProductName().contains("Sauce Labs Bike Light")
+        //Exemple de 2 assertions sur la même ligne
+        assertTrue(objCheckoutOverviewPage.getProductName().contains("Sauce Labs Bike Light")
                 && objCheckoutOverviewPage.getProductPrice().contains("$9.99"),
                 "Product price or product name is not correct");
         Assertions.assertEquals(objCheckoutOverviewPage.getTotalPrice(),"Total: $10.79",
