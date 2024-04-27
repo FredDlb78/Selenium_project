@@ -112,4 +112,9 @@ public class exSauceDemo {
                 "Message is not correct");
         objCheckoutCompletePage.clickBackHome();
     }
+    @AfterAll
+
+    public static void tearDown(){
+        driver.quit();
+    }
 }
