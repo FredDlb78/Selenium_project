@@ -100,4 +100,16 @@ public class exSauceDemo {
                 "Total price is not correct");
         objCheckoutOverviewPage.clickFinish();
     }
+    @Test
+
+    public void t007_confirmationPayment(){
+        CheckoutCompletePage objCheckoutCompletePage = new CheckoutCompletePage(driver);
+        assertTrue(objCheckoutCompletePage.getUrlWebPage().contains("checkout-complete.html"),
+                "Url is not correct");
+        assertTrue(objCheckoutCompletePage.getTitlePage().equals("Checkout: Complete!"),
+                "Title is not correct");
+        assertTrue(objCheckoutCompletePage.getValidationOrderMessage().equals("Thank you for your order!"),
+                "Message is not correct");
+        objCheckoutCompletePage.clickBackHome();
+    }
 }
