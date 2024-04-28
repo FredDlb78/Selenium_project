@@ -100,8 +100,9 @@ public class exSauceDemo {
                 "Total price is not correct");
         objCheckoutOverviewPage.clickFinish();
     }
-    @Test
-    public void  t007_exitTest(){
+    @AfterAll
+
+    public static void  tearDown(){
         driver.quit();
     }
 }
