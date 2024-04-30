@@ -4,7 +4,8 @@ package exDemoblaze;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import pageObjectModelDemoblaze.Homepage;
+import pageObjectModelDemoblaze.HeaderPage;
+import pageObjectModelDemoblaze.HomePage;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class exDemoblaze {
@@ -20,17 +21,14 @@ public class exDemoblaze {
 
     @Test
 
-    public void t001_test(){
-        Homepage objHomepage = new Homepage(driver);
+    public void t001_test() throws InterruptedException {
+        HomePage objHomePage = new HomePage(driver);
+        HeaderPage objHeaderPage = new HeaderPage(driver);
 
-        //objHomepage.clickSamsungGalaxys6();
-        //objHomepage.clickNokiaLumia1520();
-        objHomepage.clickCategories();
-        objHomepage.clickPhonesCategory();
-        objHomepage.clickLaptopsCategory();
-        objHomepage.clickMonitorsCategory();
-        objHomepage.clickPreviousButton();
-        objHomepage.clickNextButton();
+
+        objHomePage.clickSamsungGalaxyS6();
+
+
 
     }
 
