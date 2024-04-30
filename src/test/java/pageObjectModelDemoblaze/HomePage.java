@@ -1,11 +1,15 @@
 package pageObjectModelDemoblaze;
 
+import org.openqa.selenium.By;
+import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Homepage {
+public class HomePage {
     @FindBy(id = "cat")
     private WebElement categories;
     @FindBy(xpath = "//a[@id='itemc' and text()='Phones']")
@@ -14,23 +18,23 @@ public class Homepage {
     private WebElement laptopsCategorie;
     @FindBy(xpath = "//a[@id='itemc' and text()='Monitors']")
     private WebElement monitorsCategorie;
-    @FindBy( )
-    private WebElement samsungGalaxy6;
-    @FindBy( )
+    @FindBy(xpath = "//a[contains(text(), 'Samsung galaxy s6')]")
+    private WebElement samsungGalaxyS6;
+    @FindBy(xpath = "//a[contains(text(), 'lumia')]")
     private WebElement nokiaLumia1520;
-    @FindBy( )
+    @FindBy(xpath = "//a[contains(text(), 'Nexus 6')]")
     private WebElement nexus6;
-    @FindBy( )
+    @FindBy(xpath = "//a[contains(text(), 'Samsung galaxy s7')]")
     private WebElement samsungGalaxyS7;
-    @FindBy( )
+    @FindBy(xpath = "//a[contains(text(), 'Iphone 6 32gb')]")
     private WebElement iphone632gb;
-    @FindBy( )
+    @FindBy(xpath = "//a[contains(text(), 'Sony xperia z5')]")
     private WebElement sonyXperiaZ5;
-    @FindBy( )
+    @FindBy(xpath = "//a[contains(text(), 'HTC One M9')]")
     private WebElement htcOneM9;
-    @FindBy( )
+    @FindBy(xpath = "//a[contains(text(), 'Sony vaio i5')]")
     private WebElement sonyVaioI5;
-    @FindBy( )
+    @FindBy(xpath = "//a[contains(text(), 'Sony vaio i7')]")
     private WebElement sonyVaioI7;
     @FindBy(id = "prev2")
             private WebElement previousButton;
@@ -39,7 +43,7 @@ public class Homepage {
 
 
     WebDriver driver;
-    public Homepage(WebDriver driver){
+    public HomePage(WebDriver driver){
         this.driver=driver;
         PageFactory.initElements(driver, this);
     }
@@ -56,11 +60,13 @@ public class Homepage {
     public void clickMonitorsCategory(){
         monitorsCategorie.click();
     }
-    public void clickSamsungGalaxys6(){
-        samsungGalaxy6.click();
+    public void clickSamsungGalaxyS6(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(samsungGalaxyS6)).click();
     }
     public void clickNokiaLumia1520(){
-        nokiaLumia1520.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(nokiaLumia1520)).click();
     }
     public void clickPreviousButton(){
         previousButton.click();
