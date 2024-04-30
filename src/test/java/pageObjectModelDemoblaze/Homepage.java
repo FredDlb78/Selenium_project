@@ -7,9 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 
 public class Homepage {
     @FindBy(id = "cat")
-            private WebElement categories;
+    private WebElement categories;
     @FindBy(xpath = "//a[@id='itemc' and text()='Phones']")
-            private WebElement phonesCategorie;
+    private WebElement phonesCategorie;
     @FindBy(xpath = "//a[@id='itemc' and text()='Laptops']")
     private WebElement laptopsCategorie;
     @FindBy(xpath = "//a[@id='itemc' and text()='Monitors']")
