@@ -1,4 +1,4 @@
-package pageObjectModel;
+package pageObjectModelSauceDemo;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,8 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class CheckoutCompletePage {
 
-    //Utilisation du FindBy tagName
-    @FindBy(tagName = "h2")
+    @FindBy(xpath = "//span[@data-test='title']")
             private WebElement titlePage;
     @FindBy(xpath = "//h2[@data-test='complete-header']")
             private WebElement validationOrderMessage;

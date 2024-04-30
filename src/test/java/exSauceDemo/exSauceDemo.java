@@ -1,12 +1,10 @@
 package exSauceDemo;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.bouncycastle.asn1.dvcs.DVCSObjectIdentifiers;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import pageObjectModel.*;
+import pageObjectModelSauceDemo.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

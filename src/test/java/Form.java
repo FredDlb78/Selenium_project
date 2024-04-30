@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjectModel.MainPage;
+import pageObjectModelSauceDemo.MainPage;
 
 import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertEquals;
