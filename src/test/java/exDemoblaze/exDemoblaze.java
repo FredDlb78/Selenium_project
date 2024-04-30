@@ -23,10 +23,15 @@ public class exDemoblaze {
     public void t001_test(){
         Homepage objHomepage = new Homepage(driver);
 
+        //objHomepage.clickSamsungGalaxys6();
+        //objHomepage.clickNokiaLumia1520();
         objHomepage.clickCategories();
         objHomepage.clickPhonesCategory();
         objHomepage.clickLaptopsCategory();
         objHomepage.clickMonitorsCategory();
+        objHomepage.clickPreviousButton();
+        objHomepage.clickNextButton();
+
     }
 
 

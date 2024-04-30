@@ -14,6 +14,29 @@ public class Homepage {
     private WebElement laptopsCategorie;
     @FindBy(xpath = "//a[@id='itemc' and text()='Monitors']")
     private WebElement monitorsCategorie;
+    @FindBy( )
+    private WebElement samsungGalaxy6;
+    @FindBy( )
+    private WebElement nokiaLumia1520;
+    @FindBy( )
+    private WebElement nexus6;
+    @FindBy( )
+    private WebElement samsungGalaxyS7;
+    @FindBy( )
+    private WebElement iphone632gb;
+    @FindBy( )
+    private WebElement sonyXperiaZ5;
+    @FindBy( )
+    private WebElement htcOneM9;
+    @FindBy( )
+    private WebElement sonyVaioI5;
+    @FindBy( )
+    private WebElement sonyVaioI7;
+    @FindBy(id = "prev2")
+            private WebElement previousButton;
+    @FindBy(id = "next2")
+    private WebElement nextButton;
+
 
     WebDriver driver;
     public Homepage(WebDriver driver){
@@ -32,6 +55,18 @@ public class Homepage {
     }
     public void clickMonitorsCategory(){
         monitorsCategorie.click();
+    }
+    public void clickSamsungGalaxys6(){
+        samsungGalaxy6.click();
+    }
+    public void clickNokiaLumia1520(){
+        nokiaLumia1520.click();
+    }
+    public void clickPreviousButton(){
+        previousButton.click();
+    }
+    public void clickNextButton(){
+        nextButton.click();
     }
 
 }
