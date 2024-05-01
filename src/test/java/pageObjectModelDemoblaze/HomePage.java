@@ -1,6 +1,5 @@
 package pageObjectModelDemoblaze;
 
-import org.openqa.selenium.By;
 import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -58,6 +57,9 @@ public class HomePage {
     public HomePage(WebDriver driver){
         this.driver=driver;
         PageFactory.initElements(driver, this);
+    }
+    public boolean getCurrentUrlWeb(){
+        return driver.getCurrentUrl().equals("https://www.demoblaze.com/index.html");
     }
 
     public void clickCategories(){
