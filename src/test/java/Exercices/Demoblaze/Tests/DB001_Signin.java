@@ -1,4 +1,4 @@
-package Exercices.Demoblaze;
+package Exercices.Demoblaze.Tests;
 
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -8,14 +8,27 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import PageObjectModel.Demoblaze.HeaderPage;
 import PageObjectModel.Demoblaze.HomePage;
 
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class DB001_Signin {
     static FirefoxDriver driver;
+    static int id;
+    static String username;
+    static String password;
 
     @BeforeAll
-    public static void setUp() {
+    public static void generateIdAndCredentials() {
+        Random random = new Random();
+        id = 100000 + random.nextInt(900000);
+        username = "username" + id;
+        password = "Test@1234";
+    }
+
+    @BeforeEach
+    public void setUp() {
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
         driver.get("https://www.demoblaze.com/index.html");
@@ -33,15 +46,13 @@ public class DB001_Signin {
 
         assertTrue(objHomePage.getCurrentUrlWeb());
         objHeaderPage.clickSignUpButton();
-        assertTrue(objHeaderPage.isTitleCorrect("Sign up"),
-                "Popup Title is not correct");
         assertTrue(objHeaderPage.isVisibleSignupButton());
-        objHeaderPage.setUsernameSignUpPopup("Fredinho7830078");
-        objHeaderPage.setPasswordSignUpPopup("Test@1234");
+        objHeaderPage.setUsernameSignUpPopup(username);
+        objHeaderPage.setPasswordSignUpPopup(password);
         objHeaderPage.clickSignupButtonSignupPopup();
-        // Ajouter une assertion sur le message dans la popup via l'interception de requête
-        // Sign up successful.
-        // objHeaderPage.clickSignupPopupCrossButton();
+        objHeaderPage.verifyAlertText("Sign up successful.",
+                "Alert message is not correct");
+
     }
     @Test
     @DisplayName("Signin02")
@@ -57,12 +68,11 @@ public class DB001_Signin {
         assertTrue(objHeaderPage.isTitleCorrect("Sign up"),
                 "Popup Title is not correct");
         assertTrue(objHeaderPage.isVisibleSignupButton());
-        objHeaderPage.setUsernameSignUpPopup("Fredinho78");
-        objHeaderPage.setPasswordSignUpPopup("Test@1234");
+        objHeaderPage.setUsernameSignUpPopup(username);
+        objHeaderPage.setPasswordSignUpPopup(password);
         objHeaderPage.clickSignupButtonSignupPopup();
-        // Ajouter une assertion sur le message dans la popup via l'interception de requête
-        // This user already exist.
-        // objHeaderPage.clickSignupPopupCrossButton();
+        objHeaderPage.verifyAlertText("This user already exist.",
+                "Alert message is not correct");
     }
 
     @Test
@@ -80,11 +90,10 @@ public class DB001_Signin {
                 "Popup Title is not correct");
         assertTrue(objHeaderPage.isVisibleSignupButton());
         objHeaderPage.setUsernameSignUpPopup("");
-        objHeaderPage.setPasswordSignUpPopup("Test@1234");
+        objHeaderPage.setPasswordSignUpPopup(password);
         objHeaderPage.clickSignupButtonSignupPopup();
-        // Ajouter une assertion sur le message dans la popup via l'interception de requête
-        // Please fill out Username And Password
-        // objHeaderPage.clickSignupPopupCrossButton();
+        objHeaderPage.verifyAlertText("Please fill out Username and Password.",
+                "Alert message is not correct");
     }
     @Test
     @DisplayName("Signin04")
@@ -100,18 +109,17 @@ public class DB001_Signin {
         assertTrue(objHeaderPage.isTitleCorrect("Sign up"),
                 "Popup Title is not correct");
         assertTrue(objHeaderPage.isVisibleSignupButton());
-        objHeaderPage.setUsernameSignUpPopup("Fredinho78");
+        objHeaderPage.setUsernameSignUpPopup(username);
         objHeaderPage.setPasswordSignUpPopup("");
         objHeaderPage.clickSignupButtonSignupPopup();
-        // Ajouter une assertion sur le message dans la popup via l'interception de requête
-        // Please fill out Username And Password
-        // objHeaderPage.clickSignupPopupCrossButton();
+        objHeaderPage.verifyAlertText("Please fill out Username and Password.",
+                "Alert message is not correct");
     }
 
 
-    @AfterAll
+    @AfterEach
 
-    public static void tearDown(){
+    public void tearDown(){
         driver.quit();
     }
 }

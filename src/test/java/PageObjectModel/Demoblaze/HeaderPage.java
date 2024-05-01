@@ -5,8 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.swing.*;
+
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -90,5 +94,16 @@ public class HeaderPage {
             return true;
         }
         return false;
+    }
+    public void verifyAlertText(String expectedAlertText, String errorMessage) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Attendre jusqu'à 10 secondes
+        try {
+            wait.until(ExpectedConditions.alertIsPresent());
+            String alertText = driver.switchTo().alert().getText();
+            Assertions.assertEquals(expectedAlertText, alertText);
+            driver.switchTo().alert().accept();
+        } catch (Exception e) {
+            Assertions.fail("No alert found");
+        }
     }
 }
