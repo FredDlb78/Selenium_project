@@ -1,10 +1,10 @@
-package exSauceDemo;
+package Exercices.SauceDemo;
 
+import PageObjectModel.SauceDemo.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import pageObjectModelSauceDemo.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
