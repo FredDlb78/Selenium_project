@@ -80,6 +80,9 @@ public class HeaderPage {
         }
         return false;
     }
+    public void clickSignupPopupCrossButton(){
+        signUpPopupCrossButton.click();
+    }
 
     public Boolean isTitleCorrect(String expectedTitle) {
         String actualTitle = signupPopupTitle.getText();
