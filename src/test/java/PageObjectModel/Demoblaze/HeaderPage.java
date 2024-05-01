@@ -1,4 +1,4 @@
-package pageObjectModelDemoblaze;
+package PageObjectModel.Demoblaze;
 
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
@@ -40,7 +40,7 @@ public class HeaderPage {
     @FindBy(xpath = "//button[@aria-label=Close]")
     private WebElement signUpPopupCrossButton;
     @FindBy(id = "signInModalLabel")
-    private WebElement SignupPopupTible;
+    private WebElement signupPopupTitle;
 
     WebDriver driver;
     public HeaderPage(WebDriver driver){
@@ -74,8 +74,18 @@ public class HeaderPage {
     public void clickSignupButtonSignupPopup(){
         signUpPopupSignUpButton.click();
     }
-    //public boolean isTitleCorrect(String expectedTitle) {
-    //    String actualTitle = driver.getTitle();
-    //    return actualTitle.equalsIgnoreCase(expectedTitle);
-    //}
+    public Boolean isVisibleSignupButton(){
+        if(signUpPopupSignUpButton.isDisplayed()){
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean isTitleCorrect(String expectedTitle) {
+        String actualTitle = signupPopupTitle.getText();
+        if (actualTitle.equals(expectedTitle)){
+            return true;
+        }
+        return false;
+    }
 }

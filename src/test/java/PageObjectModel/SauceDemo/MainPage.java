@@ -1,4 +1,4 @@
-package pageObjectModelSauceDemo;
+package PageObjectModel.SauceDemo;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

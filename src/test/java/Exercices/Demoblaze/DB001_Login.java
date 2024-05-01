@@ -1,12 +1,14 @@
-package exDemoblaze;
+package Exercices.Demoblaze;
 
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import pageObjectModelDemoblaze.HeaderPage;
-import pageObjectModelDemoblaze.HomePage;
+import PageObjectModel.Demoblaze.HeaderPage;
+import PageObjectModel.Demoblaze.HomePage;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class DB001_Login {
@@ -29,9 +31,11 @@ public class DB001_Login {
         HeaderPage objHeaderPage = new HeaderPage(driver);
 
 
-        Assertions.assertTrue(objHomePage.getCurrentUrlWeb());
+        assertTrue(objHomePage.getCurrentUrlWeb());
         objHeaderPage.clickSignUpButton();
-        //Assertions.assertTrue(objHeaderPage.isTitleCorrect("Sign up"));
+        assertTrue(objHeaderPage.isTitleCorrect("Sign up"),
+                "Popup Title is not correct");
+        assertTrue(objHeaderPage.isVisibleSignupButton());
         objHeaderPage.setUsernameSignUpPopup("Fredinho78");
         objHeaderPage.setPasswordSignUpPopup("Test@1234");
         objHeaderPage.clickSignupButtonSignupPopup();
