@@ -29,6 +29,12 @@ public class HeaderPage {
     private WebElement logoutButton;
     @FindBy(id = "login2")
     private WebElement loginButton;
+    @FindBy(id = "loginusername")
+    private WebElement loginPopupUsernameInput;
+    @FindBy(id = "loginpassword")
+    private WebElement loginPopupPasswordInput;
+    @FindBy(xpath = "//button[contains(text(), 'Log in')]")
+    private WebElement logInPopupLogInButton;
     @FindBy(id = "nameofuser")
     private WebElement welcomeUser;
     @FindBy(id = "signin2")
@@ -62,6 +68,9 @@ public class HeaderPage {
     }
     public void clickSignUpButton(){
         signUpbutton.click();
+    }
+    public void clickLogInButton(){
+        loginButton.click();
     }
     public String setUsernameSignUpPopup(String username){
         signUpPopupUsernameInput.click();
@@ -105,5 +114,20 @@ public class HeaderPage {
         } catch (Exception e) {
             Assertions.fail("No alert found");
         }
+    }
+    public String setUsernameLoginPopup(String username){
+        loginPopupUsernameInput.click();
+        loginPopupUsernameInput.clear();
+        loginPopupUsernameInput.sendKeys(username);
+        return username;
+    }
+    public String setPasswordLoginPopup(String password){
+        loginPopupPasswordInput.click();
+        loginPopupPasswordInput.clear();
+        loginPopupPasswordInput.sendKeys(password);
+        return password;
+    }
+    public void clickLogInButtonLogInPopUp(){
+        logInPopupLogInButton.click();
     }
 }
