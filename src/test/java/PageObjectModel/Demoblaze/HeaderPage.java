@@ -137,6 +137,6 @@ public class HeaderPage {
     }
     public boolean welcomeUserButtonContainsText(String username) {
         String buttonText = welcomeUserButton.getText();
-        return buttonText.contains("Welcome " + username);
+        return buttonText.equals("Welcome " + username);
     }
 }
