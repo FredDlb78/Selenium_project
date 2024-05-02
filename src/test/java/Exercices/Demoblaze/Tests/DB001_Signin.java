@@ -1,15 +1,12 @@
 package Exercices.Demoblaze.Tests;
 
-
+import Credentials.Credentials;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import PageObjectModel.Demoblaze.HeaderPage;
 import PageObjectModel.Demoblaze.HomePage;
-
-import java.util.Random;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
@@ -20,11 +17,11 @@ public class DB001_Signin {
     static String password;
 
     @BeforeAll
-    public static void generateIdAndCredentials() {
-        Random random = new Random();
-        id = 100000 + random.nextInt(900000);
-        username = "username" + id;
-        password = "Test@1234";
+    public static void testInscription() {
+        Credentials.generateIdAndCredentials();
+        username = Credentials.getUsername();
+        password = Credentials.getPassword();
+        // Utilisez le username et le password pour l'inscription
     }
 
     @BeforeEach
@@ -40,6 +37,7 @@ public class DB001_Signin {
     @Description("Passing case")
 
     public void Signin01() {
+
         HomePage objHomePage = new HomePage(driver);
         HeaderPage objHeaderPage = new HeaderPage(driver);
 

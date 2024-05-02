@@ -8,11 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.swing.*;
-
 import java.time.Duration;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class HeaderPage {
     @FindBy(id = "nava")
@@ -36,7 +32,7 @@ public class HeaderPage {
     @FindBy(xpath = "//button[contains(text(), 'Log in')]")
     private WebElement logInPopupLogInButton;
     @FindBy(id = "nameofuser")
-    private WebElement welcomeUser;
+    private WebElement welcomeUserButton;
     @FindBy(id = "signin2")
     private WebElement signUpbutton;
     @FindBy(id = "sign-username")
@@ -129,5 +125,18 @@ public class HeaderPage {
     }
     public void clickLogInButtonLogInPopUp(){
         logInPopupLogInButton.click();
+    }
+    public boolean isVisibleLogOutButton(){
+        if(logoutButton.isDisplayed()){
+            return true;
+        }
+        return false;
+    }
+    public WebElement getLogoutButton() {
+        return logoutButton;
+    }
+    public boolean welcomeUserButtonContainsText(String username) {
+        String buttonText = welcomeUserButton.getText();
+        return buttonText.contains("Welcome " + username);
     }
 }
