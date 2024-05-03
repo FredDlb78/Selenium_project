@@ -162,8 +162,12 @@ public class HeaderPage {
     public void clickAboutUsButton(){
         aboutUsButton.click();
     }
-    public String isAboutUsTitle(){
-        return aboutUsButton.getText();
+    public Boolean isAboutUsTitle(String expectedTitle){
+        String actualTitle =aboutUsPopupTitle.getText();
+        if (actualTitle.equals(expectedTitle)){
+            return true;
+        } else {
+        return false;
     }
     public void clickPlayVideoButton(){
         playVideoButton.click();
