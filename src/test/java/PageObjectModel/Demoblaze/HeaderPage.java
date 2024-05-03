@@ -18,7 +18,7 @@ public class HeaderPage {
     @FindBy(xpath = "//a[contains(text(), 'Contact')]")
     private WebElement contactButton;
     @FindBy(xpath = "//a[contains(text(), 'About us')]")
-    private WebElement AboutUsButton;
+    private WebElement aboutUsButton;
     @FindBy(id = "cartur")
     private WebElement cartButton;
     @FindBy(id = "logout2")
@@ -40,13 +40,33 @@ public class HeaderPage {
     @FindBy(id = "sign-password")
     private WebElement signUpPopupPasswordInput;
     @FindBy(xpath = "//button[contains(text(), 'Close')]")
-    private WebElement signUpPopupCloseButton;
+    private WebElement closePopupButton;
     @FindBy(xpath = "//button[contains(text(), 'Sign up')]")
     private WebElement signUpPopupSignUpButton;
     @FindBy(xpath = "//button[@aria-label=Close]")
-    private WebElement signUpPopupCrossButton;
+    private WebElement crossPopupButton;
     @FindBy(id = "signInModalLabel")
     private WebElement signupPopupTitle;
+    @FindBy(xpath = "//button[@title='Play']")
+            private WebElement playVideoButton;
+    @FindBy(xpath = "//button[@title='Pause']")
+    private WebElement pauseVideoButton;
+    @FindBy(xpath = "//button[@title='Unmute']")
+    private WebElement unMuteVideoButton;
+    @FindBy(xpath = "//button[@title='Mute']")
+    private WebElement MuteVideoButton;
+    @FindBy(id = "example-video_html5_api")
+            private WebElement video;
+    @FindBy(xpath = "//button[@title='Picture-in-Picture']")
+            private WebElement pictureInPictureButton;
+    @FindBy(xpath = "//button[@title='Exit Picture-in-Picture']")
+    private WebElement exitPictureInPictureButton;
+    @FindBy(xpath = "//button[@title='Non-Fullscren']")
+            private WebElement nonFullScreenButton;
+    @FindBy(id = "videoModalLabel")
+            private WebElement aboutUsPopupTitle;
+    @FindBy(xpath = "//button")
+
 
     WebDriver driver;
     public HeaderPage(WebDriver driver){
@@ -89,8 +109,8 @@ public class HeaderPage {
         }
         return false;
     }
-    public void clickSignupPopupCrossButton(){
-        signUpPopupCrossButton.click();
+    public void clickCrossPopupButton(){
+        crossPopupButton.click();
     }
 
     public Boolean isTitleCorrect(String expectedTitle) {
@@ -139,4 +159,16 @@ public class HeaderPage {
         String buttonText = welcomeUserButton.getText();
         return buttonText.equals("Welcome " + username);
     }
+    public void clickAboutUsButton(){
+        aboutUsButton.click();
+    }
+    public String isAboutUsTitle(){
+        return aboutUsButton.getText();
+    }
+    public void clickPlayVideoButton(){
+        playVideoButton.click();
+    }
+
+
+
 }
