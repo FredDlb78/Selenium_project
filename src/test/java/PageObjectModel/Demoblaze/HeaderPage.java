@@ -168,11 +168,13 @@ public class HeaderPage {
             return true;
         } else {
         return false;
-    }
-    public void clickPlayVideoButton(){
+    }}
+    public void clickPlayVideoButton() {
         playVideoButton.click();
     }
 
-
-
-}
+    public void clickPauseVideoButton(){
+        pauseVideoButton.click();
+    }public void clickClosePopupButton(){
+closePopupButton.click();
+}}
