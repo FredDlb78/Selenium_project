@@ -29,11 +29,12 @@ public class DB003_AboutUsPopup {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         objHeaderPage.clickAboutUsButton();
+        objHeaderPage.clickOnVideo();
         objHeaderPage.clickPlayVideoButton();
         objHeaderPage.clickPauseVideoButton();
-        objHeaderPage.clickMutebutton();
+        objHeaderPage.clickMuteButton();
         objHeaderPage.clickUnMuteButton();
-        objHeaderPage.clickPipbutton();
+        objHeaderPage.clickPipButton();
         objHeaderPage.clickNonPipButton();
         objHeaderPage.clickFullScreenButton();
         objHeaderPage.clickNonFullScreenButton();

@@ -54,7 +54,7 @@ public class HeaderPage {
     @FindBy(xpath = "//button[@title='Unmute']")
     private WebElement unMuteVideoButton;
     @FindBy(xpath = "//button[@title='Mute']")
-    private WebElement MuteVideoButton;
+    private WebElement muteVideoButton;
     @FindBy(id = "example-video_html5_api")
             private WebElement video;
     @FindBy(xpath = "//button[@title='Picture-in-Picture']")
@@ -63,9 +63,12 @@ public class HeaderPage {
     private WebElement exitPictureInPictureButton;
     @FindBy(xpath = "//button[@title='Non-Fullscren']")
             private WebElement nonFullScreenButton;
+    @FindBy(xpath = "//button[@title='Fullscren']")
+    private WebElement screenButton;
     @FindBy(id = "videoModalLabel")
             private WebElement aboutUsPopupTitle;
-    @FindBy(xpath = "//button")
+    @FindBy(xpath = "//span[@class='vjs-icon-placeholder'}")
+            private WebElement onVideoButton;
 
 
     WebDriver driver;
@@ -175,6 +178,31 @@ public class HeaderPage {
 
     public void clickPauseVideoButton(){
         pauseVideoButton.click();
-    }public void clickClosePopupButton(){
-closePopupButton.click();
-}}
+    }
+    public void clickClosePopupButton(){
+        closePopupButton.click();
+    }
+    public void clickMuteButton(){
+        muteVideoButton.click();
+    }
+    public void clickUnMuteButton(){
+        unMuteVideoButton.click();
+    }
+    public void clickPipButton(){
+        pictureInPictureButton.click();
+    }
+    public void clickNonPipButton(){
+        exitPictureInPictureButton.click();
+    }
+    public void clickFullScreenButton(){
+        screenButton.click();
+    }
+    public void clickNonFullScreenButton(){
+        nonFullScreenButton.click();
+    }
+    public void clickOnVideo(){
+        onVideoButton.click();
+    }
+
+
+}
