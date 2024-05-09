@@ -18,7 +18,7 @@ public class HeaderPage {
     @FindBy(xpath = "//a[contains(text(), 'Contact')]")
     private WebElement contactButton;
     @FindBy(xpath = "//a[contains(text(), 'About us')]")
-    private WebElement AboutUsButton;
+    private WebElement aboutUsButton;
     @FindBy(id = "cartur")
     private WebElement cartButton;
     @FindBy(id = "logout2")
@@ -39,14 +39,37 @@ public class HeaderPage {
     private WebElement signUpPopupUsernameInput;
     @FindBy(id = "sign-password")
     private WebElement signUpPopupPasswordInput;
-    @FindBy(xpath = "//button[contains(text(), 'Close')]")
-    private WebElement signUpPopupCloseButton;
+    @FindBy(xpath = "/html/body/div[4]/div/div/div[3]/button")
+    private WebElement closePopupButton;
     @FindBy(xpath = "//button[contains(text(), 'Sign up')]")
     private WebElement signUpPopupSignUpButton;
-    @FindBy(xpath = "//button[@aria-label=Close]")
-    private WebElement signUpPopupCrossButton;
+    @FindBy(xpath = "//button[@aria-label=\"Close\"]")
+    private WebElement crossPopupButton;
     @FindBy(id = "signInModalLabel")
     private WebElement signupPopupTitle;
+    @FindBy(xpath = "//button[@title='Play']")
+            private WebElement playVideoButton;
+    @FindBy(xpath = "//button[@title='Pause']")
+    private WebElement pauseVideoButton;
+    @FindBy(xpath = "//button[@title='Unmute']")
+    private WebElement unMuteVideoButton;
+    @FindBy(xpath = "//button[@title='Mute']")
+    private WebElement muteVideoButton;
+    @FindBy(id = "example-video_html5_api")
+            private WebElement video;
+    @FindBy(xpath = "//button[@title='Picture-in-Picture']")
+            private WebElement pictureInPictureButton;
+    @FindBy(xpath = "//button[@title='Exit Picture-in-Picture']")
+    private WebElement exitPictureInPictureButton;
+    @FindBy(xpath = "//button[@title='Non-Fullscreen']")
+            private WebElement nonFullScreenButton;
+    @FindBy(xpath = "//button[@title='Fullscreen']")
+    private WebElement fullScreenButton;
+    @FindBy(id = "videoModalLabel")
+            private WebElement aboutUsPopupTitle;
+    @FindBy(xpath = "/html/body/div[4]/div/div/div[2]/form/div/div/button/span[1]")
+            private WebElement onVideoButton;
+
 
     WebDriver driver;
     public HeaderPage(WebDriver driver){
@@ -89,8 +112,8 @@ public class HeaderPage {
         }
         return false;
     }
-    public void clickSignupPopupCrossButton(){
-        signUpPopupCrossButton.click();
+    public void clickCrossPopupButton(){
+        crossPopupButton.click();
     }
 
     public Boolean isTitleCorrect(String expectedTitle) {
@@ -139,4 +162,65 @@ public class HeaderPage {
         String buttonText = welcomeUserButton.getText();
         return buttonText.equals("Welcome " + username);
     }
+    public void clickAboutUsButton(){
+        aboutUsButton.click();
+    }
+    public Boolean isAboutUsTitle(String expectedTitle){
+        String actualTitle =aboutUsPopupTitle.getText();
+        if (actualTitle.equals(expectedTitle)){
+            return true;
+        } else {
+        return false;
+    }}
+    public void clickPlayVideoButton() {
+        playVideoButton.click();
+    }
+
+    public void clickPauseVideoButton(){
+        pauseVideoButton.click();
+    }
+    public void clickClosePopupButton(){
+        closePopupButton.click();
+    }
+    public void clickMuteButton(){
+        muteVideoButton.click();
+    }
+    public void clickUnMuteButton(){
+        unMuteVideoButton.click();
+    }
+    public void clickPipButton(){
+        pictureInPictureButton.click();
+    }
+    public void clickNonPipButton(){
+        exitPictureInPictureButton.click();
+    }
+    public void clickFullScreenButton(){
+        fullScreenButton.click();
+    }
+    public void clickNonFullScreenButton(){
+        nonFullScreenButton.click();
+    }
+    public void clickOnVideo(){
+        onVideoButton.click();
+    }
+    public boolean isPauseVideoButtonVisible(){
+        if (pauseVideoButton.isDisplayed());
+        return true;}
+    public boolean isPlayVideoButtonVisible(){
+        if (playVideoButton.isDisplayed());
+        return true;}
+    public boolean isMuteButtonVisible(){
+        if (muteVideoButton.isDisplayed());
+        return true;}
+    public boolean isFullScreenButtonVisible(){
+        if (fullScreenButton.isDisplayed());
+        return true;}
+    public boolean isNonFullScreenButtonVisible(){
+        if (nonFullScreenButton.isDisplayed());
+        return true;}
+    public boolean isUnMuteButtonVisible(){
+        if (unMuteVideoButton.isDisplayed());
+        return true;}
+
+
 }
