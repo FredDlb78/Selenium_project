@@ -51,6 +51,16 @@ public class HomePage {
             private WebElement previousButton;
     @FindBy(id = "next2")
     private WebElement nextButton;
+    @FindBy(xpath = "//span[@class='carousel-control-prev-icon']")
+            private WebElement leftArrow;
+    @FindBy(xpath = "//span[@class='carousel-control-next-icon']")
+            private WebElement rightArrow;
+    @FindBy(xpath = "//li[@data-slide-to='0']")
+            private WebElement lineToSwitch1;
+    @FindBy(xpath = "//li[@data-slide-to='1']")
+    private WebElement lineToSwitch2;
+    @FindBy(xpath = "//li[@data-slide-to='2']")
+    private WebElement lineToSwitch3;
 
 
     WebDriver driver;
@@ -144,6 +154,21 @@ public class HomePage {
     }
     public void clickNextButton(){
         nextButton.click();
+    }
+    public void clickRightArrow(){
+        rightArrow.click();
+    }
+    public void clickLeftArrow(){
+        leftArrow.click();
+    }
+    public void clickLineToSwitch1(){
+        lineToSwitch1.click();
+    }
+    public void clickLineToSwitch2(){
+        lineToSwitch2.click();
+    }
+    public void clickLineToSwitch3(){
+        lineToSwitch3.click();
     }
 
 }

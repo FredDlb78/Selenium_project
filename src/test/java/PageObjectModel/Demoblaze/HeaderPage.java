@@ -69,7 +69,16 @@ public class HeaderPage {
             private WebElement aboutUsPopupTitle;
     @FindBy(xpath = "/html/body/div[4]/div/div/div[2]/form/div/div/button/span[1]")
             private WebElement onVideoButton;
-
+    @FindBy(id = "exampleModalLabel")
+            private WebElement contactPopUpTitle;
+    @FindBy(id = "recipient-email")
+            private WebElement contactEmailContactPopUpInput;
+    @FindBy(id = "recipient-name")
+    private WebElement contactNameContactPopUpInput;
+    @FindBy(id = "message-text")
+    private WebElement messageContactPopUpInput;
+    @FindBy(xpath = "//button[contains(text(), 'Send message')]")
+            private WebElement sendMessageContactPopupButton;
 
     WebDriver driver;
     public HeaderPage(WebDriver driver){
@@ -221,6 +230,24 @@ public class HeaderPage {
     public boolean isUnMuteButtonVisible(){
         if (unMuteVideoButton.isDisplayed());
         return true;}
+    public void setContactEmailContactPopup(String contactEmail){
+        contactEmailContactPopUpInput.click();
+        contactEmailContactPopUpInput.clear();
+        contactEmailContactPopUpInput.sendKeys(contactEmail);
+    }
+    public void setContactNameContactPopup(String contactName){
+        contactNameContactPopUpInput.click();
+        contactNameContactPopUpInput.clear();
+        contactNameContactPopUpInput.sendKeys(contactName);
+    }
+    public void setMessageContactPopup(String message){
+        messageContactPopUpInput.click();
+        messageContactPopUpInput.clear();
+        messageContactPopUpInput.sendKeys(message);
+    }
+    public void clickSendMessageButton(){
+        sendMessageContactPopupButton.click();
 
+    }
 
 }
