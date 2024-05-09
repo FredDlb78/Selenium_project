@@ -1,11 +1,18 @@
 package Exercices.SimpleBookApi;
 
+import jdk.jfr.Description;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 class SimpleBookApiGetStatus {
+    @Test
+    @DisplayName("Get - Status")
+    @Description("Check that the api is OK")
 
     public static void main(String[] args) {
         String apiURL = "https://simple-books-api.glitch.me";
@@ -34,7 +41,7 @@ class SimpleBookApiGetStatus {
             String expectedResponse = "{\"status\":\"OK\"}";
             String actualResponse = response.toString();
             if (!actualResponse.equals(expectedResponse)) {
-                throw new RuntimeException("Le contenu de la réponse est différent de celui attendu.");
+                throw new RuntimeException("Le contenu de la réponse est incorrect.");
             }
 
             System.out.println("Test réussi. Statut de l'API : " + response.toString());
