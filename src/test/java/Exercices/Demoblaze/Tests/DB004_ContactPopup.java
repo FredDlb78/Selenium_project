@@ -6,16 +6,13 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class DB004_ContactPopup {
     static FirefoxDriver driver;
+    static String contactEmail = "f.delabre89+1234@gmail.com";
+    static String contactName = "Marco Verratti";
+    static String message = "Ceci est un message pour le test DB004_ContactPopUp";
     @BeforeEach
     public void setUp() {
         WebDriverManager.firefoxdriver().setup();
@@ -25,19 +22,19 @@ public class DB004_ContactPopup {
 
     }
     @Test
-    @DisplayName("")
-    @Description("")
+    @DisplayName("Contact01")
+    @Description("Passing Case")
 
-    public void testName() {
+    public void Contact01() {
         HeaderPage objHeaderPage = new HeaderPage(driver);
 
         objHeaderPage.clickContactButton();
-        objHeaderPage.setContactEmailContactPopup("f.delabre89+1234@gmail.com");
-        objHeaderPage.setContactNameContactPopup("Marco Verratti");
-        objHeaderPage.setMessageContactPopup("Ceci est un message pour le test DB004_ContactPopUp");
+        objHeaderPage.setContactEmailContactPopup(contactEmail);
+        objHeaderPage.setContactNameContactPopup(contactName);
+        objHeaderPage.setMessageContactPopup(message);
         objHeaderPage.clickSendMessageButton();
-
-
+        objHeaderPage.verifyAlertText("Thanks for the message!!",
+                "Alert message is not correct");
     }
     @AfterEach
 
