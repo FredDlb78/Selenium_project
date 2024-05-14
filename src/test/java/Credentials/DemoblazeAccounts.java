@@ -2,7 +2,7 @@ package Credentials;
 
 import java.util.Random;
 
-public class Credentials {
+public class DemoblazeAccounts {
     private static String username;
     private static String password;
 

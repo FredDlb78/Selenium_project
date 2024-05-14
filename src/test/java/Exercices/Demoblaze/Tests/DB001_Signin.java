@@ -1,6 +1,6 @@
 package Exercices.Demoblaze.Tests;
 
-import Credentials.Credentials;
+import Credentials.DemoblazeAccounts;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
@@ -18,9 +18,9 @@ public class DB001_Signin {
 
     @BeforeAll
     public static void testInscription() {
-        Credentials.generateIdAndCredentials();
-        username = Credentials.getUsername();
-        password = Credentials.getPassword();
+        DemoblazeAccounts.generateIdAndCredentials();
+        username = DemoblazeAccounts.getUsername();
+        password = DemoblazeAccounts.getPassword();
         // Utilisez le username et le password pour l'inscription
     }
 
