@@ -47,7 +47,9 @@ public class SimpleBooksApi_ApiMethods {
             int responseCode = connection.getResponseCode();
             assertEquals(expectedResponseCode, responseCode, errorMessage);
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    responseCode == 200 ? connection.getInputStream() : connection.getErrorStream()
+            ));
             String inputLine;
             StringBuffer response = new StringBuffer();
 
@@ -67,4 +69,5 @@ public class SimpleBooksApi_ApiMethods {
             fail("Erreur : " + e.getMessage());
         }
     }
+
 }
