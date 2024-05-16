@@ -247,7 +247,10 @@ public class HeaderPage {
     }
     public void clickSendMessageButton(){
         sendMessageContactPopupButton.click();
-
     }
 
+    public boolean isCorrectContactPopupTitle(){
+        String contactTitle = "New message";
+        return contactPopUpTitle.getText().equals(contactTitle);
+    }
 }
