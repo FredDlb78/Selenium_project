@@ -125,7 +125,7 @@ public class HeaderPage {
         crossPopupButton.click();
     }
 
-    public Boolean isTitleCorrect(String expectedTitle) {
+    public Boolean isSignupPopupTitleCorrect(String expectedTitle) {
         String actualTitle = signupPopupTitle.getText();
         if (actualTitle.equals(expectedTitle)){
             return true;

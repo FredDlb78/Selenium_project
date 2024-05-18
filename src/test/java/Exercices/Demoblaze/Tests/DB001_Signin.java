@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class DB001_Signin {
     static FirefoxDriver driver;
-    static int id;
     static String username;
     static String password;
 
@@ -63,7 +62,7 @@ public class DB001_Signin {
 
         assertTrue(objHomePage.getCurrentUrlWeb());
         objHeaderPage.clickSignUpButton();
-        assertTrue(objHeaderPage.isTitleCorrect("Sign up"),
+        assertTrue(objHeaderPage.isSignupPopupTitleCorrect("Sign up"),
                 "Popup Title is not correct");
         assertTrue(objHeaderPage.isVisibleSignupButton());
         objHeaderPage.setUsernameSignUpPopup(username);
@@ -84,7 +83,7 @@ public class DB001_Signin {
 
         assertTrue(objHomePage.getCurrentUrlWeb());
         objHeaderPage.clickSignUpButton();
-        assertTrue(objHeaderPage.isTitleCorrect("Sign up"),
+        assertTrue(objHeaderPage.isSignupPopupTitleCorrect("Sign up"),
                 "Popup Title is not correct");
         assertTrue(objHeaderPage.isVisibleSignupButton());
         objHeaderPage.setUsernameSignUpPopup("");
@@ -104,7 +103,7 @@ public class DB001_Signin {
 
         assertTrue(objHomePage.getCurrentUrlWeb());
         objHeaderPage.clickSignUpButton();
-        assertTrue(objHeaderPage.isTitleCorrect("Sign up"),
+        assertTrue(objHeaderPage.isSignupPopupTitleCorrect("Sign up"),
                 "Popup Title is not correct");
         assertTrue(objHeaderPage.isVisibleSignupButton());
         objHeaderPage.setUsernameSignUpPopup(username);

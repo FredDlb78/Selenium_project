@@ -1,16 +1,23 @@
 package Exercices.Demoblaze.E2E;
 
+import Credentials.DemoblazeAccounts;
 import PageObjectModel.Demoblaze.HeaderPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
-import java.util.Random;
+import java.time.Instant;
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class E2E_001 {
     static FirefoxDriver driver;
+    static String username;
+    static String password;
 
     @BeforeAll
     public static void setUp() {
@@ -19,22 +26,16 @@ public class E2E_001 {
         driver.get("https://www.demoblaze.com/index.html");
         driver.manage().window().maximize();
     }
-    public static int generateId() {
-        Random random = new Random();
-        return 100000 + random.nextInt(900000);
-    }
-    // Génération de l'ID
-    int id = generateId();
-
-    // Création du nom d'utilisateur
-    String username = "username" + id;
-    String password = "Test@1234";
 
     @Test
     @DisplayName("E2E_EE001")
     @Description("Passing case")
-
     public void Step01_Signin(){
+        DemoblazeAccounts.newAccount();
+        username = DemoblazeAccounts.getUsername();
+        password = DemoblazeAccounts.getPassword();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3)); // Attendre jusqu'à 10 secondes maximum
         HeaderPage objHeaderPage = new HeaderPage(driver);
 
         objHeaderPage.clickSignUpButton();
@@ -43,5 +44,17 @@ public class E2E_001 {
         objHeaderPage.clickSignupButtonSignupPopup();
         objHeaderPage.verifyAlertText("Sign up successful.",
                 "Alert message is not correct");
+        objHeaderPage.clickLogInButton();
+        objHeaderPage.setUsernameLoginPopup(username);
+        objHeaderPage.setPasswordLoginPopup(password);
+        objHeaderPage.clickLogInButtonLogInPopUp();
+        wait.until(ExpectedConditions.visibilityOf(objHeaderPage.getLogoutButton()));
+        objHeaderPage.isVisibleLogOutButton();
+        assertTrue(objHeaderPage.welcomeUserButtonContainsText(username),
+                "Wrong username");
     }
+
+    @AfterAll
+    public static void tearDown(){ driver.quit();}
 }
+
