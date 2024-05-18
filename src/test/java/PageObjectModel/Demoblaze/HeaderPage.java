@@ -13,7 +13,7 @@ import java.time.Duration;
 public class HeaderPage {
     @FindBy(id = "nava")
             private WebElement productStoreButton;
-    @FindBy(xpath = "//a[@href='index']")
+    @FindBy(xpath = "//a[@href='index.html']")
             private WebElement homeButton;
     @FindBy(xpath = "//a[contains(text(), 'Contact')]")
     private WebElement contactButton;
@@ -149,11 +149,10 @@ public class HeaderPage {
         loginPopupUsernameInput.sendKeys(username);
         return username;
     }
-    public String setPasswordLoginPopup(String password){
+    public void setPasswordLoginPopup(String password){
         loginPopupPasswordInput.click();
         loginPopupPasswordInput.clear();
         loginPopupPasswordInput.sendKeys(password);
-        return password;
     }
     public void clickLogInButtonLogInPopUp(){
         logInPopupLogInButton.click();
