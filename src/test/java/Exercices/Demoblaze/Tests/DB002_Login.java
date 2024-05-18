@@ -1,5 +1,6 @@
 package Exercices.Demoblaze.Tests;
 
+import Credentials.DemoblazeAccounts;
 import PageObjectModel.Demoblaze.HeaderPage;
 import PageObjectModel.Demoblaze.HomePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -14,14 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class DB002_Login {
     static FirefoxDriver driver;
-    String username = "JamesSele";
-    String password = "Test@1234";
-    String notRegisteredUser = "notRegisterUser1234";
-    String wrongPassword = "WrongPassword";
-    String emptyUsername = "";
-    String emptyPassword = "";
-
-
+    static String username;
+    static String password;
 
     @BeforeEach
     public void setUp() {
@@ -36,6 +31,10 @@ public class DB002_Login {
     @Description("Passing case")
 
     public void Login01() {
+        DemoblazeAccounts.existingAccount();
+        username = DemoblazeAccounts.getUsername();
+        password = DemoblazeAccounts.getPassword();
+
         HeaderPage objHeaderPage = new HeaderPage(driver);
         HomePage objHomePage = new HomePage(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -54,13 +53,17 @@ public class DB002_Login {
     @Description("Non-passing case - Not registered user")
 
     public void Login02() {
+        DemoblazeAccounts.notRegisteredAccount();
+        username = DemoblazeAccounts.getUsername();
+        password = DemoblazeAccounts.getPassword();
+
         HeaderPage objHeaderPage = new HeaderPage(driver);
         HomePage objHomePage = new HomePage(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         assertTrue(objHomePage.getCurrentUrlWeb());
         objHeaderPage.clickLogInButton();
-        objHeaderPage.setUsernameLoginPopup(notRegisteredUser);
+        objHeaderPage.setUsernameLoginPopup(username);
         objHeaderPage.setPasswordLoginPopup(password);
         objHeaderPage.clickLogInButtonLogInPopUp();
         objHeaderPage.verifyAlertText("User does not exist.",
@@ -71,6 +74,10 @@ public class DB002_Login {
     @Description("Non-passing case - Wrong password")
 
     public void Login03() {
+        DemoblazeAccounts.wrongPasswordAccount();
+        username = DemoblazeAccounts.getUsername();
+        password = DemoblazeAccounts.getPassword();
+
         HeaderPage objHeaderPage = new HeaderPage(driver);
         HomePage objHomePage = new HomePage(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -78,7 +85,7 @@ public class DB002_Login {
         assertTrue(objHomePage.getCurrentUrlWeb());
         objHeaderPage.clickLogInButton();
         objHeaderPage.setUsernameLoginPopup(username);
-        objHeaderPage.setPasswordLoginPopup(wrongPassword);
+        objHeaderPage.setPasswordLoginPopup(password);
         objHeaderPage.clickLogInButtonLogInPopUp();
         objHeaderPage.verifyAlertText("Wrong password.",
                 "Alert message is not correct");
@@ -88,13 +95,17 @@ public class DB002_Login {
     @Description("Non-passing case - Empty username")
 
     public void Login04() {
+        DemoblazeAccounts.emptyUsernameAccount();
+        username = DemoblazeAccounts.getUsername();
+        password = DemoblazeAccounts.getPassword();
+
         HeaderPage objHeaderPage = new HeaderPage(driver);
         HomePage objHomePage = new HomePage(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         assertTrue(objHomePage.getCurrentUrlWeb());
         objHeaderPage.clickLogInButton();
-        objHeaderPage.setUsernameLoginPopup(emptyUsername);
+        objHeaderPage.setUsernameLoginPopup(username);
         objHeaderPage.setPasswordLoginPopup(password);
         objHeaderPage.clickLogInButtonLogInPopUp();
         objHeaderPage.verifyAlertText("Please fill out Username and Password.",
@@ -105,6 +116,10 @@ public class DB002_Login {
     @Description("Non-passing case - Empty password")
 
     public void Login05() {
+        DemoblazeAccounts.emptyPasswordAccount();
+        username = DemoblazeAccounts.getUsername();
+        password = DemoblazeAccounts.getPassword();
+
         HeaderPage objHeaderPage = new HeaderPage(driver);
         HomePage objHomePage = new HomePage(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -112,7 +127,7 @@ public class DB002_Login {
         assertTrue(objHomePage.getCurrentUrlWeb());
         objHeaderPage.clickLogInButton();
         objHeaderPage.setUsernameLoginPopup(username);
-        objHeaderPage.setPasswordLoginPopup(emptyPassword);
+        objHeaderPage.setPasswordLoginPopup(password);
         objHeaderPage.clickLogInButtonLogInPopUp();
         objHeaderPage.verifyAlertText("Please fill out Username and Password.",
                 "Alert message is not correct");
