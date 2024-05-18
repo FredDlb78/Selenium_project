@@ -18,7 +18,7 @@ public class DB001_Signin {
 
     @BeforeAll
     public static void testInscription() {
-        DemoblazeAccounts.generateIdAndCredentials();
+        DemoblazeAccounts.newAccount();
         username = DemoblazeAccounts.getUsername();
         password = DemoblazeAccounts.getPassword();
         // Utilisez le username et le password pour l'inscription
