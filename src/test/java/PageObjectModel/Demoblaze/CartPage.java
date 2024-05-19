@@ -17,6 +17,8 @@ public class CartPage {
     private WebElement samsungGalaxyS6Price;
     @FindBy(xpath = "//a[contains(@onclick, 'deleteItem')]")
     private WebElement deleteButton;
+    @FindBy(xpath = "//button[contains(text(), 'Place Order')]")
+    private WebElement placeOrderButton;
 
     WebDriver driver;
     public CartPage(WebDriver driver){
@@ -25,7 +27,6 @@ public class CartPage {
     }
     public boolean isVisibleSamsungGalaxyS6Image(){
         return samsungGalaxyS6Image.isDisplayed();
-
     }
     public boolean isVisibleSamsungGalaxyS6Title(){
         return samsungGalaxyS6Title.isDisplayed();
@@ -35,5 +36,8 @@ public class CartPage {
     }
     public boolean isVisibleDeleteButton(){
         return deleteButton.isDisplayed();
+    }
+    public void clickPlaceOrderButton(){
+        placeOrderButton.click();
     }
 }
