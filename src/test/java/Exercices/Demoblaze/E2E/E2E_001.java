@@ -1,6 +1,7 @@
 package Exercices.Demoblaze.E2E;
 
 import Credentials.DemoblazeAccounts;
+import PageObjectModel.Demoblaze.CartPage;
 import PageObjectModel.Demoblaze.HeaderPage;
 import PageObjectModel.Demoblaze.HomePage;
 import PageObjectModel.Demoblaze.ProductPage;
@@ -12,9 +13,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
-
 import java.time.Instant;
-
 import static Credentials.DemoblazeAccounts.email;
 import static java.time.Duration.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -46,6 +45,7 @@ public class E2E_001 {
         HeaderPage objHeaderPage = new HeaderPage(driver);
         HomePage objHomePage = new HomePage(driver);
         ProductPage objProductPage = new ProductPage(driver);
+        CartPage objCartPage = new CartPage(driver);
 
         objHeaderPage.clickSignUpButton();
         objHeaderPage.setUsernameSignUpPopup(username);
@@ -75,7 +75,16 @@ public class E2E_001 {
         objHomePage.clickPhonesCategory();
         objHomePage.clickSamsungGalaxyS6();
         Thread.sleep(500);
-        objProductPage.clickAddToCartButton();
+        objProductPage.clickAddToCartButton("Wrong alert message");
+        objHeaderPage.clickCartButton();
+        Thread.sleep(1000);
+        objCartPage.isVisibleSamsungGalaxyS6Image();
+        objCartPage.isVisibleSamsungGalaxyS6Title();
+        objCartPage.isVisibleSamsungGalaxyS6Price();
+        objCartPage.isVisibleDeleteButton();
+
+
+
 
     }
 

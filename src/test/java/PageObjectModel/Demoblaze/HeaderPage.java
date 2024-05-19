@@ -252,4 +252,7 @@ public class HeaderPage {
         String contactTitle = "New message";
         return contactPopUpTitle.getText().equals(contactTitle);
     }
+    public void clickCartButton(){
+        cartButton.click();
+    }
 }
