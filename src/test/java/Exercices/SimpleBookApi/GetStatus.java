@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-class SimpleBookApiGetStatus {
+class GetStatus {
     @Test
     @DisplayName("Get - Status")
     @Description("Check that the api is OK")

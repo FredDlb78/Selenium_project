@@ -4,7 +4,7 @@ import jdk.jfr.Description;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class SimpleBookApiGetListOfBooks {
+public class GetListOfBooks {
 
     private final String apiURL = "https://simple-books-api.glitch.me";
 
@@ -19,7 +19,7 @@ public class SimpleBookApiGetListOfBooks {
         String successMessage = "01 - Test réussi.";
         String errorMessage = "Le code de réponse n'est pas 200";
 
-        SimpleBooksApi_ApiMethods.testApiResponse(apiURL, endpoint, method, expectedResponseCode, expectedResponse, successMessage, errorMessage);
+        ApiMethods.testApiGetResponse(apiURL, endpoint, expectedResponseCode, expectedResponse, successMessage, errorMessage);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class SimpleBookApiGetListOfBooks {
         String successMessage = "02 - Test réussi.";
         String errorMessage = "Le code de réponse n'est pas 200";
 
-        SimpleBooksApi_ApiMethods.testApiResponse(apiURL, endpoint, method, expectedResponseCode, expectedResponse, successMessage, errorMessage);
+        ApiMethods.testApiGetResponse(apiURL, endpoint, expectedResponseCode, expectedResponse, successMessage, errorMessage);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class SimpleBookApiGetListOfBooks {
         String successMessage = "03 - Test réussi.";
         String errorMessage = "Le code de réponse n'est pas 200";
 
-        SimpleBooksApi_ApiMethods.testApiResponse(apiURL, endpoint, method, expectedResponseCode, expectedResponse, successMessage, errorMessage);
+        ApiMethods.testApiGetResponse(apiURL, endpoint, expectedResponseCode, expectedResponse, successMessage, errorMessage);
     }
 
     @Test
@@ -61,6 +61,6 @@ public class SimpleBookApiGetListOfBooks {
         String successMessage = "04 - Test réussi.";
         String errorMessage = "Le code de réponse n'est pas 200";
 
-        SimpleBooksApi_ApiMethods.testApiResponse(apiURL, endpoint, method, expectedResponseCode, expectedResponse, successMessage, errorMessage);
+        ApiMethods.testApiGetResponse(apiURL, endpoint, expectedResponseCode, expectedResponse, successMessage, errorMessage);
     }
 }
