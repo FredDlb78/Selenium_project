@@ -51,6 +51,7 @@ public class E2E_001 {
         ProductPage objProductPage = new ProductPage(driver);
         CartPage objCartPage = new CartPage(driver);
         PlaceOrderPopupPage objPlaceOrderPopup = new PlaceOrderPopupPage(driver);
+        ValidationOrderPopup objValidationOrderPopup = new ValidationOrderPopup(driver);
 
         objHeaderPage.clickSignUpButton();
         objHeaderPage.setUsernameSignUpPopup(username);
@@ -79,7 +80,7 @@ public class E2E_001 {
         objHomePage.clickLeftArrow();
         objHomePage.clickPhonesCategory();
         objHomePage.clickSamsungGalaxyS6();
-        Thread.sleep(500);
+        Thread.sleep(1500);
         objProductPage.clickAddToCartButton("Wrong alert message");
         objHeaderPage.clickCartButton();
         Thread.sleep(1000);
@@ -87,6 +88,7 @@ public class E2E_001 {
         objCartPage.isVisibleSamsungGalaxyS6Title();
         objCartPage.isVisibleSamsungGalaxyS6Price();
         objCartPage.isVisibleDeleteButton();
+        String actualTotalPrice =objCartPage.getTotalPrice();
         objCartPage.clickPlaceOrderButton();
         objPlaceOrderPopup.isTitlePopup();
         objPlaceOrderPopup.setName(username);
@@ -96,11 +98,9 @@ public class E2E_001 {
         objPlaceOrderPopup.setMonth(creditCardMonth);
         objPlaceOrderPopup.setYear(creditCardYear);
         objPlaceOrderPopup.clickPurchaseButton();
-
-
-
-
-
+        assertTrue(objValidationOrderPopup.isVisibleValidationPicto());
+        assertTrue(objValidationOrderPopup.isVisibleValidationMessage());
+        assertTrue(objValidationOrderPopup.getOrderInformations().contains("Amount: "+actualTotalPrice+" USD"));
 
     }
 

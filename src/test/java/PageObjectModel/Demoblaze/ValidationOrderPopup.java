@@ -26,4 +26,8 @@ public class ValidationOrderPopup {
         validationMessage.isDisplayed();
         return true;
     }
+    public String getOrderInformations(){
+        orderInformations.getText();
+        return orderInformations.getText();
+    }
 }
