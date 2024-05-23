@@ -1,12 +1,9 @@
 package PageObjectModel.Demoblaze;
 
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class CartPage {
     @FindBy(xpath = "//img[@src='imgs/galaxy_s6.jpg']")
@@ -19,6 +16,8 @@ public class CartPage {
     private WebElement deleteButton;
     @FindBy(xpath = "//button[contains(text(), 'Place Order')]")
     private WebElement placeOrderButton;
+    @FindBy(id = "totalp")
+    private WebElement totalPrice;
 
     WebDriver driver;
     public CartPage(WebDriver driver){
@@ -39,5 +38,9 @@ public class CartPage {
     }
     public void clickPlaceOrderButton(){
         placeOrderButton.click();
+    }
+    public String getTotalPrice(){
+        totalPrice.getText();
+        return totalPrice.getText();
     }
 }

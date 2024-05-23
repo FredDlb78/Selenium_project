@@ -14,6 +14,9 @@ import java.time.Duration;
 public class ProductPage {
     @FindBy(xpath = "//a[@onclick='addToCart(1)']")
     private WebElement addToCartButton;
+    @FindBy(id = "more-information")
+    private WebElement productInformations;
+
 
     WebDriver driver;
     public ProductPage(WebDriver driver){
