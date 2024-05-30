@@ -8,11 +8,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-public class DEM_13 {
+
+public class DEM_18 {
     static FirefoxDriver driver;
-    String username = "jeff12345";
-    String password = "Adebayor";
+    String contactEmail = "jeffafanougmail.com";
+    String contactName = "jeff";
+    String contactMessage = "test1";
+    String expectedAlertText = "Email Invalide";
+    String errorMessage = "Alert message is not correct";
     @BeforeAll
     public static void setUp() {
         WebDriverManager.firefoxdriver().setup();
@@ -21,17 +24,19 @@ public class DEM_13 {
         driver.manage().window().maximize();
     }
     @Test
-    @DisplayName("DEM-13")
-    @Description("Login with an existant user")
+    @DisplayName("DEM-18")
+    @Description("Fill in the contact form")
 
-    public void DEM_13(){
+    public void DEM_18(){
+
         HeaderPage objHeaderPage = new HeaderPage(driver);
 
-        objHeaderPage.clickLogInButton();
-        objHeaderPage.setUsernameLoginPopup(username);
-        objHeaderPage.setPasswordLoginPopup(password);
-        objHeaderPage.clickLogInButtonLogInPopUp();
-        assertTrue(objHeaderPage.welcomeUserButtonContainsText(username));
+        objHeaderPage.clickContactButton();
+        objHeaderPage.setContactEmailContactPopup(contactEmail);
+        objHeaderPage.setContactNameContactPopup(contactName);
+        objHeaderPage.setMessageContactPopup(contactMessage);
+        objHeaderPage.clickSendMessageButton();
+        objHeaderPage.verifyAlertText(expectedAlertText, errorMessage);
     }
     @AfterAll
     public static void tearDown(){driver.quit();}
