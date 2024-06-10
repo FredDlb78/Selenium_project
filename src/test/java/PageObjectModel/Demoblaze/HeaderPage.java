@@ -132,7 +132,7 @@ public class HeaderPage {
         }
         return false;
     }
-    public void verifyAlertText(String expectedAlertText, String errorMessage) {
+    public boolean verifyAlertText(String expectedAlertText, String errorMessage) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Attendre jusqu'à 10 secondes
         try {
             wait.until(ExpectedConditions.alertIsPresent());
@@ -142,6 +142,7 @@ public class HeaderPage {
         } catch (Exception e) {
             Assertions.fail("No alert found");
         }
+        return true;
     }
     public String setUsernameLoginPopup(String username){
         loginPopupUsernameInput.click();
