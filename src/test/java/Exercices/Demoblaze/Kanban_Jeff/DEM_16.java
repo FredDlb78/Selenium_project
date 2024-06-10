@@ -12,19 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DEM_16 {
     static FirefoxDriver driver;
     // je définis un objet qui sappel driver de type Firefoxdrive
-
     String id = RandomStringUtils.randomNumeric(8);
-
     String expectedText = "Sign up successful.";
-
     String username = "jeff"+id;
     //creation d'une variable
-
-
     String password = "Adebayor";
     // creation d'une variable
-
-
 
     @BeforeAll
 
@@ -54,12 +47,8 @@ public class DEM_16 {
         objHeaderPage.clickSignupButtonSignupPopup();
 
         assertTrue(objHeaderPage.verifyAlertText(expectedText,"le message est incorrect "));
-
-
     }
         @AfterAll
         public static void tearDown(){driver.quit();}
     // c'est une methode pour quitter la fenetre une fois le test fini
-
-
 }
