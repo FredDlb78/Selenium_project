@@ -12,7 +12,7 @@ public class DEM_30 {
     static FirefoxDriver driver;
     String username = "jeffafanou@gmail.com";
     String password = "jeff12345678910";
-    String errorMessage = "User does not exist.";
+    String alertText = "User does not exist.";
 
         @BeforeAll
     public static void setUp() {
@@ -26,15 +26,13 @@ public class DEM_30 {
     @Description("Login with an inexistant user")
 
     public void DEM_30(){
-
             HeaderPage objHeaderPage = new HeaderPage(driver);
 
        objHeaderPage.clickLogInButton();
        objHeaderPage.setUsernameLoginPopup(username);
        objHeaderPage.setPasswordLoginPopup(password);
        objHeaderPage.clickLogInButtonLogInPopUp();
-       assertTrue(objHeaderPage.verifyAlertText(errorMessage,"anomalie"));
-
+       assertTrue(objHeaderPage.verifyAlertText(alertText,"Alert text is not right"));
     }
     @AfterAll
     public static void tearDown(){driver.quit();}
