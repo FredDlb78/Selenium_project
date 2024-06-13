@@ -30,6 +30,7 @@ public class DEM_16 {
         driver.manage().window().maximize();
         // ouvrir la page et l'agrandir
     }
+
     @Test
     @DisplayName("DEM-16")
     @Description("Login CAS PASSANT")
