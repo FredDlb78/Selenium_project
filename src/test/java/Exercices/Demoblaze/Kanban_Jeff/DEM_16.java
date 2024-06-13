@@ -8,10 +8,9 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 public class DEM_16 {
     static FirefoxDriver driver;
-    // je définis un objet qui sappel driver de type Firefoxdrive
+    // je définis un objet qui s'appelle driver de type Firefoxdriver
     String id = RandomStringUtils.randomNumeric(8);
     String expectedText = "Sign up successful.";
     String username = "jeff"+id;
@@ -25,7 +24,7 @@ public class DEM_16 {
         WebDriverManager.firefoxdriver().setup();
         // met en place le firefoxdriver
         driver = new FirefoxDriver();
-        // cree une variable qui sappel driver de type firefoxdriver
+        // créé une variable qui s'appelle driver de type firefoxdriver
         driver.get("https://www.demoblaze.com/index.html");
         // URL sur laquelle  je veux pointer
         driver.manage().window().maximize();
@@ -37,7 +36,7 @@ public class DEM_16 {
 
     public void DEM_16() {
         HeaderPage objHeaderPage = new HeaderPage(driver);
-        //creer un nouvel objet objheaderpage pour lui dire que je veux utiliser firefox driver qui est type headerpage
+        // créer un nouvel objet objheaderpage pour lui dire que je veux utiliser firefox driver qui est type headerpage
 
         objHeaderPage.clickSignUpButton();
         objHeaderPage.setUsernameSignUpPopup(username);
