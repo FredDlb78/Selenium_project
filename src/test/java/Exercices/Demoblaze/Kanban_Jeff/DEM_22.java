@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DEM_22 {
     static FirefoxDriver driver;
+    String username = "";
     String password = "Adebayor";
     String alertText = "Please fill out Username and Password.";
 
@@ -31,11 +32,10 @@ public class DEM_22 {
             HeaderPage objHeaderPage = new HeaderPage(driver);
 
        objHeaderPage.clickLogInButton();
+       objHeaderPage.setUsernameLoginPopup(username);
        objHeaderPage.setPasswordLoginPopup(password);
        objHeaderPage.clickLogInButtonLogInPopUp();
-       assertTrue(objHeaderPage.verifyAlertText(alertText,"Alerte text is not right"));
-
-
+       assertTrue(objHeaderPage.verifyAlertText(alertText,"Alert text is not right"));
     }
     @AfterAll
     public static void tearDown(){driver.quit();}
