@@ -15,6 +15,8 @@ public class DB001_Signin {
     static String username;
     static String password;
 
+
+
     @BeforeAll
     public static void testInscription() {
         DemoblazeAccounts.newAccount();
