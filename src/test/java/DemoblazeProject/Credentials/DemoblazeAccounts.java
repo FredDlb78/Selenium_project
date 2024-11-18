@@ -1,4 +1,4 @@
-package Credentials;
+package DemoblazeProject.Credentials;
 
 import java.util.Random;
 
