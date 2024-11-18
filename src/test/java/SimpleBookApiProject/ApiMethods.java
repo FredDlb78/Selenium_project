@@ -1,4 +1,4 @@
-package Exercices.SimpleBookApi;
+package SimpleBookApiProject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

@@ -1,4 +1,4 @@
-package Exercices.SimpleBookApi;
+package SimpleBookApiProject;
 
 import jdk.jfr.Description;
 import org.junit.jupiter.api.DisplayName;
