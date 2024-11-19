@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -42,6 +43,9 @@ public class HeaderPage {
         // a mettre à jour quand on aura créé la page HomeMenu
     }
     public HeaderPage retrieveWelcomeUsername(AtomicReference<String> strRef) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(welcomeUsername));
+
         String usernameText = welcomeUsername.getText();
         strRef.set(usernameText);
         return this;
