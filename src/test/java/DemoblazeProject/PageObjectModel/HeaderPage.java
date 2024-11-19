@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class HeaderPage {
     private WebDriver driver;
@@ -18,6 +19,8 @@ public class HeaderPage {
     private WebElement loginMenu;
     @FindBy(xpath = "//ul//a[@href='index.html']")
     private WebElement homeMenu;
+    @FindBy(id = "nameofuser")
+    private WebElement welcomeUsername;
 
     public HeaderPage(WebDriver driver) {
         this.driver = driver;
@@ -36,5 +39,12 @@ public class HeaderPage {
     public HeaderPage clickHomeMenu() {
         homeMenu.click();
         return this;
+        // a mettre à jour quand on aura créé la page HomeMenu
     }
+    public HeaderPage retrieveWelcomeUsername(AtomicReference<String> strRef) {
+        String usernameText = welcomeUsername.getText();
+        strRef.set(usernameText);
+        return this;
+    }
+
 }

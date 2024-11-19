@@ -34,7 +34,7 @@ public class DB001_Signin extends DemoblazePage {
                 .clickSignupMenu()
                 .setUsername(username)
                 .setPassword(password)
-                .clickSignupButton()
+                .clickSignUpButton()
                 .verifyAlertTextAfterSuccess("Sign up successful.", "Alert message is not correct")
                 .clickHomeMenu();
     }
@@ -49,7 +49,7 @@ public class DB001_Signin extends DemoblazePage {
                 .clickSignupMenu()
                 .setUsername(username)
                 .setPassword(password)
-                .clickSignupButton()
+                .clickSignUpButton()
                 .verifyAlertTextAfterFailed("This user already exist.", "Alert message is not correct");
     }
 
@@ -63,7 +63,7 @@ public class DB001_Signin extends DemoblazePage {
                 .clickSignupMenu()
                 .setUsername("")
                 .setPassword(password)
-                .clickSignupButton()
+                .clickSignUpButton()
                 .verifyAlertTextAfterFailed("Please fill out Username and Password.",
                         "Alert message is not correct");
     }
@@ -78,7 +78,7 @@ public class DB001_Signin extends DemoblazePage {
                 .clickSignupMenu()
                 .setUsername(username)
                 .setPassword("")
-                .clickSignupButton()
+                .clickSignUpButton()
                 .verifyAlertTextAfterFailed("Please fill out Username and Password.",
                         "Alert message is not correct");
     }

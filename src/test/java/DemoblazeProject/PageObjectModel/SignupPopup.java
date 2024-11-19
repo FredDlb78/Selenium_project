@@ -46,7 +46,7 @@ public class SignupPopup {
         return this;
     }
 
-    public SignupPopup clickSignupButton() {
+    public SignupPopup clickSignUpButton() {
         signUpButton.click();
         return this;
     }

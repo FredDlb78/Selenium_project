@@ -27,10 +27,10 @@ public class DB002_Login extends DemoblazePage {
         HeaderPage headerPage = new HeaderPage(driver);
 
         headerPage
-                .clickSignUpMenu()
+                .clickSignupMenu()
                 .setUsername(username)
                 .setPassword(password)
-                .clickSignupButton()
+                .clickSignUpButton()
                 .verifyAlertTextAfterSuccess("Sign up successful.", "Alert message is not correct")
                 .clickHomeMenu();
     }
@@ -47,25 +47,25 @@ public class DB002_Login extends DemoblazePage {
                 .setUsername(wrongUsername)
                 .setPassword(password)
                 .clickLoginButtonThenFailed()
-                .verifyAlertTextAfterFailed("User does not exist.",
+                .verifyAlertTextThenFailed("User does not exist.",
                         "Alert message is not correct")
                 //Wrong password
                 .setUsername(username)
                 .setPassword(wrongPassword)
                 .clickLoginButtonThenFailed()
-                .verifyAlertTextAfterFailed("Wrong password.",
+                .verifyAlertTextThenFailed("Wrong password.",
                         "Alert message is not correct")
                 //Empty username
                 .setUsername("")
                 .setPassword(password)
                 .clickLoginButtonThenFailed()
-                .verifyAlertTextAfterFailed("Please fill out Username and Password.",
+                .verifyAlertTextThenFailed("Please fill out Username and Password.",
                         "Alert message is not correct")
                 //Empty password
                 .setUsername(wrongUsername)
                 .setPassword("")
                 .clickLoginButtonThenFailed()
-                .verifyAlertTextAfterFailed("Please fill out Username and Password.",
+                .verifyAlertTextThenFailed("Please fill out Username and Password.",
                         "Alert message is not correct")
                 .setUsername(username)
                 .setPassword(password)
