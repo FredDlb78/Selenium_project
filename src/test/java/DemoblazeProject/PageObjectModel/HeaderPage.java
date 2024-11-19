@@ -1,5 +1,8 @@
 package DemoblazeProject.PageObjectModel;
 
+import io.qameta.allure.Step;
+import io.qameta.allure.junit5.AllureJunit5;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,19 +32,23 @@ public class HeaderPage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Click on Sign up Menu")
     public SignupPopup clickSignupMenu() {
         signUpMenu.click();
         return new SignupPopup(driver);
     }
+    @Step("Click on Log in Menu")
     public LoginPopup clickLoginMenu() {
         loginMenu.click();
         return new LoginPopup(driver);
     }
+    @Step("Click on Home Menu")
     public HeaderPage clickHomeMenu() {
         homeMenu.click();
         return this;
         // a mettre à jour quand on aura créé la page HomeMenu
     }
+    @Step("Retrieve Welcome + name {0} instead of Sign up menu")
     public HeaderPage retrieveWelcomeUsername(AtomicReference<String> strRef) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(welcomeUsername));

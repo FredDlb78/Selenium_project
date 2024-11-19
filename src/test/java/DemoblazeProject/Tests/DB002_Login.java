@@ -3,12 +3,18 @@ package DemoblazeProject.Tests;
 import DemoblazeProject.Credentials.DemoblazeAccounts;
 import DemoblazeProject.PageObjectModel.DemoblazePage;
 import DemoblazeProject.PageObjectModel.HeaderPage;
+import io.qameta.allure.junit5.AllureJunit5;
+import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@ExtendWith(AllureJunit5.class)
+@Timeout(60*2)
+@DisplayName("DB002 - Login tests")
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class DB002_Login extends DemoblazePage {
 
@@ -36,7 +42,13 @@ public class DB002_Login extends DemoblazePage {
     }
 
     @Test
-    @DisplayName("Login")
+    @DisplayName("DB002 - All cases")
+    @Description("Cases:" +
+            "- Wrong username" +
+            "- Wrong password" +
+            "- Empty username" +
+            "- Empty password" +
+            "- Passing case")
     public void Login() {
         strRef = new AtomicReference<>();
         HeaderPage headerPage = new HeaderPage(driver);
