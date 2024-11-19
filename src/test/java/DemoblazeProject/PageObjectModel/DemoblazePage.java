@@ -5,12 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DemoblazePage {
-    protected WebDriver driver;
+    protected static WebDriver driver;
 
     public DemoblazePage() {
     }
 
-    public void setUp() {
+    public static void setUp() {
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
         driver.get("https://www.demoblaze.com/index.html");
