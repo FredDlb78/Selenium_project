@@ -49,7 +49,7 @@ public class LoginPopup {
         loginButton.click();
         return this;
     }
-    public LoginPopup verifyAlertTextAfterFailed(String expectedAlertText, String errorMessage) {
+    public LoginPopup verifyAlertTextThenFailed(String expectedAlertText, String errorMessage) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
             wait.until(ExpectedConditions.alertIsPresent());
