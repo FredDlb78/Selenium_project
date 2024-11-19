@@ -31,10 +31,10 @@ public class DB001_Signin extends DemoblazePage {
         HeaderPage headerPage = new HeaderPage(driver);
 
         headerPage
-                .clickSignUpMenu()
+                .clickSignupMenu()
                 .setUsername(username)
                 .setPassword(password)
-                .clickSignUpButton()
+                .clickSignupButton()
                 .verifyAlertTextAfterSuccess("Sign up successful.", "Alert message is not correct")
                 .clickHomeMenu();
     }
@@ -46,10 +46,10 @@ public class DB001_Signin extends DemoblazePage {
         HeaderPage headerPage = new HeaderPage(driver);
 
         headerPage
-                .clickSignUpMenu()
+                .clickSignupMenu()
                 .setUsername(username)
                 .setPassword(password)
-                .clickSignUpButton()
+                .clickSignupButton()
                 .verifyAlertTextAfterFailed("This user already exist.", "Alert message is not correct");
     }
 
@@ -60,10 +60,10 @@ public class DB001_Signin extends DemoblazePage {
         HeaderPage headerPage = new HeaderPage(driver);
 
         headerPage
-                .clickSignUpMenu()
+                .clickSignupMenu()
                 .setUsername("")
                 .setPassword(password)
-                .clickSignUpButton()
+                .clickSignupButton()
                 .verifyAlertTextAfterFailed("Please fill out Username and Password.",
                         "Alert message is not correct");
     }
@@ -75,10 +75,10 @@ public class DB001_Signin extends DemoblazePage {
         HeaderPage headerPage = new HeaderPage(driver);
 
         headerPage
-                .clickSignUpMenu()
+                .clickSignupMenu()
                 .setUsername(username)
                 .setPassword("")
-                .clickSignUpButton()
+                .clickSignupButton()
                 .verifyAlertTextAfterFailed("Please fill out Username and Password.",
                         "Alert message is not correct");
     }
