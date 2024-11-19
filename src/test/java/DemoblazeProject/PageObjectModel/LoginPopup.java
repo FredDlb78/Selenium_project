@@ -10,61 +10,46 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class SignUpPopup {
+public class LoginPopup {
 
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @FindBy(id = "sign-username")
+    @FindBy(id = "loginusername")
     private WebElement usernameInput;
-
-    @FindBy(id = "sign-password")
+    @FindBy(id = "loginpassword")
     private WebElement passwordInput;
+    @FindBy(xpath = "//div[@class='modal-footer']//button[@onclick='logIn()']")
+    private WebElement loginButton;
 
-    @FindBy(css = "button[onclick='register()']")
-    private WebElement signUpButton;
-
-    public SignUpPopup(WebDriver driver) {
+    public LoginPopup(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }
-
-    public SignUpPopup setUsername(String username) {
+    public LoginPopup setUsername(String username) {
         wait.until(ExpectedConditions.visibilityOf(usernameInput));
         usernameInput.click();
         usernameInput.clear();
         usernameInput.sendKeys(username);
         return this;
     }
-
-    public SignUpPopup setPassword(String password) {
+    public LoginPopup setPassword(String password) {
         wait.until(ExpectedConditions.visibilityOf(passwordInput));
         passwordInput.click();
         passwordInput.clear();
         passwordInput.sendKeys(password);
         return this;
     }
-
-    public SignUpPopup clickSignUpButton() {
-        signUpButton.click();
-        return this;
-    }
-    public HeaderPage verifyAlertTextAfterSuccess(String expectedAlertText, String errorMessage) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        try {
-            wait.until(ExpectedConditions.alertIsPresent());
-            String alertText = driver.switchTo().alert().getText();
-            if (!alertText.equals(expectedAlertText)) {
-                throw new AssertionError(errorMessage);
-            }
-            driver.switchTo().alert().accept();
-        } catch (Exception e) {
-            Assertions.fail("No alert found or error occurred: " + e.getMessage());
-        }
+    public HeaderPage clickLoginButton() {
+        loginButton.click();
         return new HeaderPage(driver);
     }
-    public SignUpPopup verifyAlertTextAfterFailed(String expectedAlertText, String errorMessage) {
+    public LoginPopup clickLoginButtonThenFailed() {
+        loginButton.click();
+        return this;
+    }
+    public LoginPopup verifyAlertTextThenFailed(String expectedAlertText, String errorMessage) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
             wait.until(ExpectedConditions.alertIsPresent());
@@ -78,5 +63,6 @@ public class SignUpPopup {
         }
         return this;
     }
+
 
 }

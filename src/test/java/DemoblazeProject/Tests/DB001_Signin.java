@@ -31,7 +31,7 @@ public class DB001_Signin extends DemoblazePage {
         HeaderPage headerPage = new HeaderPage(driver);
 
         headerPage
-                .clickSignUpMenu()
+                .clickSignupMenu()
                 .setUsername(username)
                 .setPassword(password)
                 .clickSignUpButton()
@@ -46,7 +46,7 @@ public class DB001_Signin extends DemoblazePage {
         HeaderPage headerPage = new HeaderPage(driver);
 
         headerPage
-                .clickSignUpMenu()
+                .clickSignupMenu()
                 .setUsername(username)
                 .setPassword(password)
                 .clickSignUpButton()
@@ -60,7 +60,7 @@ public class DB001_Signin extends DemoblazePage {
         HeaderPage headerPage = new HeaderPage(driver);
 
         headerPage
-                .clickSignUpMenu()
+                .clickSignupMenu()
                 .setUsername("")
                 .setPassword(password)
                 .clickSignUpButton()
@@ -75,7 +75,7 @@ public class DB001_Signin extends DemoblazePage {
         HeaderPage headerPage = new HeaderPage(driver);
 
         headerPage
-                .clickSignUpMenu()
+                .clickSignupMenu()
                 .setUsername(username)
                 .setPassword("")
                 .clickSignUpButton()
