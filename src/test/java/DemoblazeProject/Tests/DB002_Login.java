@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(AllureJunit5.class)
-@Timeout(60*2)
+@Timeout(60 * 2)
 @DisplayName("DB002 - Login tests")
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class DB002_Login extends DemoblazePage {

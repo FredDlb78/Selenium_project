@@ -1,5 +1,6 @@
 package DemoblazeProject.PageObjectModel;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,6 +31,7 @@ public class SignupPopup {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Set username {0}")
     public SignupPopup setUsername(String username) {
         wait.until(ExpectedConditions.visibilityOf(usernameInput));
         usernameInput.click();
@@ -38,6 +40,7 @@ public class SignupPopup {
         return this;
     }
 
+    @Step("Set password {0}")
     public SignupPopup setPassword(String password) {
         wait.until(ExpectedConditions.visibilityOf(passwordInput));
         passwordInput.click();
@@ -46,10 +49,13 @@ public class SignupPopup {
         return this;
     }
 
+    @Step("Click on Sign up button")
     public SignupPopup clickSignUpButton() {
         signUpButton.click();
         return this;
     }
+
+    @Step("Verify alert text popup {0}")
     public HeaderPage verifyAlertTextAfterSuccess(String expectedAlertText, String errorMessage) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
@@ -64,6 +70,8 @@ public class SignupPopup {
         }
         return new HeaderPage(driver);
     }
+
+    @Step("Verify alert text popup {0}")
     public SignupPopup verifyAlertTextAfterFailed(String expectedAlertText, String errorMessage) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {

@@ -17,7 +17,7 @@ public class DemoblazePage {
         driver.manage().window().maximize();
     }
 
-    public void tearDown() {
+    public static void tearDown() {
         if (driver != null) {
             driver.quit();
         }
