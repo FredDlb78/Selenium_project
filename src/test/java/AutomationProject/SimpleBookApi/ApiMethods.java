@@ -1,4 +1,4 @@
-package SimpleBookApiProject;
+package AutomationProject.SimpleBookApi;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

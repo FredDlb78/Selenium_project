@@ -1,8 +1,8 @@
-package DemoblazeProject.Tests;
+package AutomationProject.Tests;
 
-import DemoblazeProject.Credentials.DemoblazeAccounts;
-import DemoblazeProject.PageObjectModel.DemoblazePage;
-import DemoblazeProject.PageObjectModel.HeaderPage;
+import AutomationProject.Credentials.DemoblazeAccounts;
+import AutomationProject.PageObjectModel.DemoblazePage;
+import AutomationProject.PageObjectModel.HeaderPage;
 import io.qameta.allure.junit5.AllureJunit5;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;

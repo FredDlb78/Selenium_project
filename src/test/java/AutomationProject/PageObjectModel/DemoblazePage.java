@@ -1,4 +1,4 @@
-package DemoblazeProject.PageObjectModel;
+package AutomationProject.PageObjectModel;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

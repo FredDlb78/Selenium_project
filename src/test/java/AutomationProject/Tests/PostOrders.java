@@ -1,9 +1,8 @@
-package SimpleBookApiProject;
+package AutomationProject.Tests;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.fail;
 
-class PostOrder {
+class PostOrders {
 
     private final String apiURL = "https://simple-books-api.glitch.me";
 
