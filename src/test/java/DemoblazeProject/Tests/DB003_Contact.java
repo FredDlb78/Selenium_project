@@ -46,7 +46,8 @@ public class DB003_Contact {
                 .setContactEmail(email)
                 .setContactName(name)
                 .setContactMessage(message)
-                .clickSendMessageButton();
+                .clickSendMessageButton()
+                .verifyAlertTextAfterSuccess("Thanks for the message!!", "Wrong alert message");
     }
 
     @AfterEach

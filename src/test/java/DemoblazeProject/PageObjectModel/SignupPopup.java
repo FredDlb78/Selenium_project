@@ -57,7 +57,7 @@ public class SignupPopup {
         return this;
     }
     @Step("Click on x button")
-    public HeaderPage clickSignupXButton() {
+    public HeaderPage clickXButton() {
         crossButton.click();
         return new HeaderPage(driver);
     }

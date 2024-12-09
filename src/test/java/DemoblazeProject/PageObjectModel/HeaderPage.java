@@ -25,6 +25,8 @@ public class HeaderPage {
     private WebElement welcomeUsername;
     @FindBy(xpath = "//div[@id='navbarExample']//a[contains(text(), 'Contact')]")
     private WebElement contactMenu;
+    @FindBy(xpath = "//div[@id='navbarExample']//a[contains(text(), 'About us')]")
+    private WebElement aboutUsMenu;
 
 
     public HeaderPage(WebDriver driver) {
@@ -42,6 +44,13 @@ public class HeaderPage {
     public LoginPopup clickLoginMenu() {
         loginMenu.click();
         return new LoginPopup(driver);
+    }
+    @Step("Click on About us Menu")
+    public AboutUsPopup clickAboutUsMenu() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(aboutUsMenu));
+        aboutUsMenu.click();
+        return new AboutUsPopup(driver);
     }
     @Step("Click on Home Menu")
     public HeaderPage clickHomeMenu() {

@@ -63,7 +63,7 @@ public class LoginPopup {
         return this;
     }
     @Step("Click on x button")
-    public HeaderPage clickLoginXButton() {
+    public HeaderPage clickXButton() {
         crossButton.click();
         return new HeaderPage(driver);
     }
