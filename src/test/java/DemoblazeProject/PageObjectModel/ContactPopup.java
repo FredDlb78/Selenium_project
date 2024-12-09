@@ -1,6 +1,7 @@
 package DemoblazeProject.PageObjectModel;
 
 import io.qameta.allure.Step;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,18 +25,18 @@ public class ContactPopup {
 
     @FindBy(id = "exampleModalLabel")
     private WebElement title;
-    @FindBy(xpath = "//div[@class='modal-content']//button[@onclick='send()'])")
-    private WebElement xButton;
     @FindBy(id = "recipient-email")
     private  WebElement emailInput;
     @FindBy(id = "recipient-name")
     private WebElement nameInput;
     @FindBy(id = "message-text")
     private WebElement messageInput;
-    @FindBy(xpath = "//*[@id=\"exampleModal\"]/div/div/div[3]/button[1]")
-    private WebElement closeButton;
-    @FindBy(xpath = "//div[@class=\"modal-content\"]//button[@onclick=\"send()\"]")
+    @FindBy(xpath = "//div[@class='modal-content']//button[@onclick='send()']")
     private WebElement sendMessageButton;
+    @FindBy(xpath = "//div[@id='exampleModal']//div[@class='modal-content']//span[contains(text(), '×')]")
+    private WebElement crossButton;
+    @FindBy(xpath = "//div[@id='exampleModal']//button[contains(text(), 'Close')]\n")
+    private WebElement closeButton;
 
     @Step("Assert title {0}")
     public ContactPopup assertTitleEquals(String expectedTitle){
@@ -43,11 +44,6 @@ public class ContactPopup {
         wait.until(ExpectedConditions.visibilityOf(title));
         assertEquals(expectedTitle, title.getText(), "Wrong title");
         return this;
-    }
-    @Step("Click on X button")
-    public HeaderPage clickXButton() {
-        xButton.click();
-        return new HeaderPage(driver);
     }
     @Step("Set contact email")
     public ContactPopup setContactEmail(String email) {
@@ -73,14 +69,34 @@ public class ContactPopup {
         messageInput.sendKeys(message);
         return this;
     }
-    @Step("Click on Close button")
+    @Step("Click on Send message button")
+    public ContactPopup clickSendMessageButton() {
+        sendMessageButton.click();
+        return this;
+    }
+    @Step("Click on x button")
+    public HeaderPage clickXButton() {
+        crossButton.click();
+        return new HeaderPage(driver);
+    }
+    @Step("Click on close button")
     public HeaderPage clickCloseButton() {
         closeButton.click();
         return new HeaderPage(driver);
     }
-    @Step("Click on Send message button")
-    public HeaderPage clickSendMessageButton() {
-        sendMessageButton.click();
+    @Step("Verify alert text popup {0}")
+    public HeaderPage verifyAlertTextAfterSuccess(String expectedAlertText, String errorMessage) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        try {
+            wait.until(ExpectedConditions.alertIsPresent());
+            String alertText = driver.switchTo().alert().getText();
+            if (!alertText.equals(expectedAlertText)) {
+                throw new AssertionError(errorMessage);
+            }
+            driver.switchTo().alert().accept();
+        } catch (Exception e) {
+            Assertions.fail("No alert found or error occurred: " + e.getMessage());
+        }
         return new HeaderPage(driver);
     }
 
