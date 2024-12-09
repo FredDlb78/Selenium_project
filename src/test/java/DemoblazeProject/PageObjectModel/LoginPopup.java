@@ -22,6 +22,10 @@ public class LoginPopup {
     private WebElement passwordInput;
     @FindBy(xpath = "//div[@class='modal-footer']//button[@onclick='logIn()']")
     private WebElement loginButton;
+    @FindBy(xpath = "//div[@id='logInModal']//div[@class='modal-content']//span[contains(text(), '×')]")
+    private WebElement crossButton;
+    @FindBy(xpath = "//div[@id='logInModal']//button[contains(text(), 'Close')]")
+    private WebElement closeButton;
 
     public LoginPopup(WebDriver driver) {
         this.driver = driver;
@@ -57,6 +61,16 @@ public class LoginPopup {
     public LoginPopup clickLoginButtonThenFailed() {
         loginButton.click();
         return this;
+    }
+    @Step("Click on x button")
+    public HeaderPage clickLoginXButton() {
+        crossButton.click();
+        return new HeaderPage(driver);
+    }
+    @Step("Click on close button")
+    public HeaderPage clickCloseButton() {
+        closeButton.click();
+        return new HeaderPage(driver);
     }
 
     @Step("Verify alert text popup {0}")

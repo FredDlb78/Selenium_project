@@ -18,12 +18,14 @@ public class SignupPopup {
 
     @FindBy(id = "sign-username")
     private WebElement usernameInput;
-
     @FindBy(id = "sign-password")
     private WebElement passwordInput;
-
     @FindBy(css = "button[onclick='register()']")
     private WebElement signUpButton;
+    @FindBy(xpath = "//div[@id='signInModal']//div[@class='modal-content']//span[contains(text(), '×')]")
+    private WebElement crossButton;
+    @FindBy(xpath = "//div[@id='signInModal']//button[contains(text(), 'Close')]")
+    private WebElement closeButton;
 
     public SignupPopup(WebDriver driver) {
         this.driver = driver;
@@ -53,6 +55,16 @@ public class SignupPopup {
     public SignupPopup clickSignUpButton() {
         signUpButton.click();
         return this;
+    }
+    @Step("Click on x button")
+    public HeaderPage clickSignupXButton() {
+        crossButton.click();
+        return new HeaderPage(driver);
+    }
+    @Step("Click on close button")
+    public HeaderPage clickCloseButton() {
+        closeButton.click();
+        return new HeaderPage(driver);
     }
 
     @Step("Verify alert text popup {0}")
