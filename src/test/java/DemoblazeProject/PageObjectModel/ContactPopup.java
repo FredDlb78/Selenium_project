@@ -1,14 +1,16 @@
 package DemoblazeProject.PageObjectModel;
 
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ContactPopup {
     private WebDriver driver;
@@ -35,14 +37,11 @@ public class ContactPopup {
     @FindBy(xpath = "//div[@class=\"modal-content\"]//button[@onclick=\"send()\"]")
     private WebElement sendMessageButton;
 
-    public String email = "James@gmail.com";
-    public String name = "James";
-    public String message = "Hello Moto";
-
-
-    @Step("Title Verification")
-    public ContactPopup checkTitleMenu() {
-        title.getText();
+    @Step("Assert title {0}")
+    public ContactPopup assertTitleEquals(String expectedTitle){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(title));
+        assertEquals(expectedTitle, title.getText(), "Wrong title");
         return this;
     }
     @Step("Click on X button")
@@ -51,21 +50,24 @@ public class ContactPopup {
         return new HeaderPage(driver);
     }
     @Step("Set contact email")
-    public ContactPopup setContactEmail() {
+    public ContactPopup setContactEmail(String email) {
+        wait.until(ExpectedConditions.visibilityOf(emailInput));
         emailInput.click();
         emailInput.clear();
         emailInput.sendKeys(email);
         return this;
     }
-    @Step("Set contact name")
-    public ContactPopup setContactName() {
+    @Step("Set contact name {0}")
+    public ContactPopup setContactName(String name) {
+        wait.until(ExpectedConditions.visibilityOf(nameInput));
         nameInput.click();
         nameInput.clear();
         nameInput.sendKeys(name);
         return this;
     }
     @Step("Set contact message")
-    public ContactPopup setContactMessage() {
+    public ContactPopup setContactMessage(String message) {
+        wait.until(ExpectedConditions.visibilityOf(messageInput));
         messageInput.click();
         messageInput.clear();
         messageInput.sendKeys(message);

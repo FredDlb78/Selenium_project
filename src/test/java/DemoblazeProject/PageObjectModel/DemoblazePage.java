@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DemoblazePage {
-    protected static WebDriver driver;
+    public static WebDriver driver;
 
     public DemoblazePage() {
     }

@@ -83,7 +83,7 @@ public class DB002_Login extends DemoblazePage {
                 .setPassword(password)
                 .clickLoginButton()
                 .retrieveWelcomeUsername(strRef);
-        assertEquals("Welcome " + username, strRef.get(),
+                assertEquals("Welcome " + username, strRef.get(),
                 "Welcome username is not correctly displayed");
     }
 
