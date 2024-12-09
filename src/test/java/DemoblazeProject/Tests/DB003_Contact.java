@@ -33,16 +33,16 @@ public class DB003_Contact {
     @DisplayName("DB003 - All cases")
     @Description("")
     public void Contact() {
+        DemoblazeAccounts.newAccount();
         String name = DemoblazeAccounts.getUsername();
         String email = DemoblazeAccounts.getEmail();
         String message = DemoblazeAccounts.getMessage();
-        strRef = new AtomicReference<>();
+
         HeaderPage headerPage = new HeaderPage(driver);
-        ContactPopup contactPopup = new ContactPopup(driver);
 
         headerPage
                 .clickContactMenu()
-            //    .retrieveTitle(strRef)
+                .assertTitleEquals("New message")
                 .setContactEmail(email)
                 .setContactName(name)
                 .setContactMessage(message)

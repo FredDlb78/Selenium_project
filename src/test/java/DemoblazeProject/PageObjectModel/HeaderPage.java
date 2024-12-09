@@ -1,8 +1,6 @@
 package DemoblazeProject.PageObjectModel;
 
 import io.qameta.allure.Step;
-import io.qameta.allure.junit5.AllureJunit5;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

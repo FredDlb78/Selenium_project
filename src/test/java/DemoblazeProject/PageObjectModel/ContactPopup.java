@@ -1,7 +1,6 @@
 package DemoblazeProject.PageObjectModel;
 
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -39,14 +37,11 @@ public class ContactPopup {
     @FindBy(xpath = "//div[@class=\"modal-content\"]//button[@onclick=\"send()\"]")
     private WebElement sendMessageButton;
 
-    @Step("Retrieve title")
-    public ContactPopup retrieveTitle(AtomicReference<String> strRef) {
+    @Step("Assert title {0}")
+    public ContactPopup assertTitleEquals(String expectedTitle){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(title));
-
-        String str = title.getText();
-        strRef.set(str);
-        assertEquals("New message", strRef, "Wrong title");
+        assertEquals(expectedTitle, title.getText(), "Wrong title");
         return this;
     }
     @Step("Click on X button")
@@ -56,13 +51,15 @@ public class ContactPopup {
     }
     @Step("Set contact email")
     public ContactPopup setContactEmail(String email) {
+        wait.until(ExpectedConditions.visibilityOf(emailInput));
         emailInput.click();
         emailInput.clear();
         emailInput.sendKeys(email);
         return this;
     }
-    @Step("Set contact name")
+    @Step("Set contact name {0}")
     public ContactPopup setContactName(String name) {
+        wait.until(ExpectedConditions.visibilityOf(nameInput));
         nameInput.click();
         nameInput.clear();
         nameInput.sendKeys(name);
@@ -70,6 +67,7 @@ public class ContactPopup {
     }
     @Step("Set contact message")
     public ContactPopup setContactMessage(String message) {
+        wait.until(ExpectedConditions.visibilityOf(messageInput));
         messageInput.click();
         messageInput.clear();
         messageInput.sendKeys(message);
