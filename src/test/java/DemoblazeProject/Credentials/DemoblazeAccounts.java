@@ -11,6 +11,7 @@ public class DemoblazeAccounts {
     public static String creditCardNumbers;
     public static String creditCardMonth;
     public static String creditCardYear;
+    public static String message;
 
 
 
@@ -25,6 +26,7 @@ public class DemoblazeAccounts {
         creditCardNumbers ="1234123412341234";
         creditCardMonth ="04";
         creditCardYear="26";
+        message="Salut salut" + id;
     }
 
     public static void existingAccount() {
@@ -76,6 +78,9 @@ public class DemoblazeAccounts {
     }
     public static String getCreditCardYear() {
         return creditCardYear;
+    }
+    public static String getMessage() {
+        return message;
     }
 }
 

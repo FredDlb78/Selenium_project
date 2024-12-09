@@ -62,7 +62,7 @@ public class HeaderPage {
     }
     @Step("Click on Contact Menu")
     public ContactPopup clickContactMenu() {
-        loginMenu.click();
+        contactMenu.click();
         return new ContactPopup(driver);
     }
 
