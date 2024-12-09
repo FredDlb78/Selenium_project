@@ -25,6 +25,9 @@ public class HeaderPage {
     private WebElement homeMenu;
     @FindBy(id = "nameofuser")
     private WebElement welcomeUsername;
+    @FindBy(xpath = "//div[@id='navbarExample']//a[contains(text(), 'Contact')]")
+    private WebElement contactMenu;
+
 
     public HeaderPage(WebDriver driver) {
         this.driver = driver;
@@ -56,6 +59,11 @@ public class HeaderPage {
         String usernameText = welcomeUsername.getText();
         strRef.set(usernameText);
         return this;
+    }
+    @Step("Click on Contact Menu")
+    public ContactPopup clickContactMenu() {
+        loginMenu.click();
+        return new ContactPopup(driver);
     }
 
 }
