@@ -29,7 +29,7 @@ public class DB003_Contact {
 
     @Test
     @DisplayName("DB003 - All cases")
-    @Description("")
+    @Description("Scénario Passant Contact")
     public void Contact() {
         DemoblazeAccounts.newAccount();
         String name = DemoblazeAccounts.getUsername();
@@ -42,7 +42,11 @@ public class DB003_Contact {
                 .clickContactMenu()
                 .assertTitleEquals("New message")
                 .setContactEmail(email)
+                .clickCloseButton() //ajouter un temps de pause
+                .clickContactMenu()
                 .setContactName(name)
+                .clickXButton() //ajouter un temps de pause
+                .clickContactMenu()
                 .setContactMessage(message)
                 .clickSendMessageButton()
                 .verifyAlertTextAfterSuccess("Thanks for the message!!", "Wrong alert message");
