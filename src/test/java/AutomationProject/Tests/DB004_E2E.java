@@ -36,7 +36,15 @@ public class DB004_E2E {
                 .clickAddToCartButton()
                 .acceptAndVerifyAlertText("Product added", "Alert text is wrong")
                 .clickCartMenu()
-                .clickPlaceOrder();
+                .clickPlaceOrder()
+                .setName("Dif")
+                .setCountry("CSP")
+                .setCity("France")
+                .setCard("007")
+                .setMonth("May")
+                .setYear("2025")
+                .clickPurchase()
+                .clickOk();
 
     }
 }

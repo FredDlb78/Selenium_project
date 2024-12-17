@@ -22,6 +22,15 @@ public class ArticlePage extends HeaderPage {
 
     @FindBy(xpath = "//a[@onclick='addToCart(1)']")
     private WebElement addToCartButton;
+    @FindBy(xpath = "//div[@id='tbodyid']//h2[@class='name']")
+    private WebElement articleName;
+    @FindBy(xpath = "//div[@id='tbodyid']//h3[@class='price-container']")
+    private WebElement articlePrice;
+    @FindBy(xpath = "//div[@class='item active']//img[@src='imgs/galaxy_s6.jpg']")
+    private WebElement articleImage;
+    @FindBy(xpath = "//div[@id='more-information']")
+    private WebElement articleDescription;
+// Faire les assertions sur ArticlePage
 
     @Step("Click on Add to cart button")
     public ArticlePage clickAddToCartButton() {
