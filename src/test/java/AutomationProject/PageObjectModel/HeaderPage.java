@@ -12,7 +12,7 @@ import java.time.Duration;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class HeaderPage {
-    private WebDriver driver;
+    protected WebDriver driver;
     private WebDriverWait wait;
 
     @FindBy(id = "signin2")
@@ -27,6 +27,8 @@ public class HeaderPage {
     private WebElement contactMenu;
     @FindBy(xpath = "//div[@id='navbarExample']//a[contains(text(), 'About us')]")
     private WebElement aboutUsMenu;
+    @FindBy(id = "cartur")
+    private WebElement cartMenu;
 
 
     public HeaderPage(WebDriver driver) {
@@ -35,16 +37,24 @@ public class HeaderPage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Click on Cart Menu")
+    public CartPage clickCartMenu() {
+        cartMenu.click();
+        return new CartPage(driver);
+    }
+
     @Step("Click on Sign up Menu")
     public SignupPopup clickSignupMenu() {
         signUpMenu.click();
         return new SignupPopup(driver);
     }
+
     @Step("Click on Log in Menu")
     public LoginPopup clickLoginMenu() {
         loginMenu.click();
         return new LoginPopup(driver);
     }
+
     @Step("Click on About us Menu")
     public AboutUsPopup clickAboutUsMenu() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -52,12 +62,14 @@ public class HeaderPage {
         aboutUsMenu.click();
         return new AboutUsPopup(driver);
     }
+
     @Step("Click on Home Menu")
     public HeaderPage clickHomeMenu() {
         homeMenu.click();
         return this;
         // a mettre à jour quand on aura créé la page HomeMenu
     }
+
     @Step("Retrieve Welcome + name {0} instead of Sign up menu")
     public HeaderPage retrieveWelcomeUsername(AtomicReference<String> strRef) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -67,6 +79,7 @@ public class HeaderPage {
         strRef.set(usernameText);
         return this;
     }
+
     @Step("Click on Contact Menu")
     public ContactPopup clickContactMenu() {
         contactMenu.click();
