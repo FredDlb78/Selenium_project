@@ -17,7 +17,6 @@ public class PlaceOrderPopup {
             PageFactory.initElements(driver, this);
         }
 
-        @FindBy(id = "name")
 
 
 
