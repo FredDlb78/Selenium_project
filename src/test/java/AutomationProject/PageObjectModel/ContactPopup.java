@@ -13,11 +13,12 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ContactPopup {
+public class ContactPopup extends DemoblazePage{
     private WebDriver driver;
     private WebDriverWait wait;
 
     public ContactPopup(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
@@ -82,21 +83,6 @@ public class ContactPopup {
     @Step("Click on close button")
     public HeaderPage clickCloseButton() {
         closeButton.click();
-        return new HeaderPage(driver);
-    }
-    @Step("Verify alert text popup {0}")
-    public HeaderPage verifyAlertTextAfterSuccess(String expectedAlertText, String errorMessage) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        try {
-            wait.until(ExpectedConditions.alertIsPresent());
-            String alertText = driver.switchTo().alert().getText();
-            if (!alertText.equals(expectedAlertText)) {
-                throw new AssertionError(errorMessage);
-            }
-            driver.switchTo().alert().accept();
-        } catch (Exception e) {
-            Assertions.fail("No alert found or error occurred: " + e.getMessage());
-        }
         return new HeaderPage(driver);
     }
 

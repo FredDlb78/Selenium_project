@@ -17,7 +17,4 @@ public class PlaceOrderPopup {
             PageFactory.initElements(driver, this);
         }
 
-
-
-
 }

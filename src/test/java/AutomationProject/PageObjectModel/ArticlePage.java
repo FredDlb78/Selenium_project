@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ArticlePage extends HeaderPage {
+public class ArticlePage extends DemoblazePage{
     private WebDriverWait wait;
 
     public ArticlePage(WebDriver driver) {
@@ -27,22 +27,6 @@ public class ArticlePage extends HeaderPage {
     public ArticlePage clickAddToCartButton() {
         wait.until(ExpectedConditions.visibilityOf(addToCartButton));
         addToCartButton.click();
-        return this;
-    }
-
-    @Step("Verify alert text popup {0}")
-    public ArticlePage acceptAndVerifyAlertText(String expectedAlertText, String errorMessage) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        try {
-            wait.until(ExpectedConditions.alertIsPresent());
-            String alertText = driver.switchTo().alert().getText();
-            if (!alertText.equals(expectedAlertText)) {
-                throw new AssertionError(errorMessage);
-            }
-            driver.switchTo().alert().accept();
-        } catch (Exception e) {
-            Assertions.fail("No alert found or error occurred: " + e.getMessage());
-        }
         return this;
     }
 

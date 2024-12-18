@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class HeaderPage {
+public class HeaderPage extends DemoblazePage {
     protected WebDriver driver;
     private WebDriverWait wait;
 
@@ -32,6 +32,7 @@ public class HeaderPage {
 
 
     public HeaderPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);

@@ -34,7 +34,7 @@ public class DB004_E2E {
 
         homePage.clickArticle("Samsung galaxy s6")
                 .clickAddToCartButton()
-                .acceptAndVerifyAlertText("Product added", "Alert text is wrong")
+                .acceptAndVerifyAlertText("Product added", "Alert text is wrong", HomePage.class)
                 .clickCartMenu()
                 .clickPlaceOrder();
 
