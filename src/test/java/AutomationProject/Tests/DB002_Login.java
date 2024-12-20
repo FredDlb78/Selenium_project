@@ -36,9 +36,9 @@ public class DB002_Login extends DemoblazePage {
         username = DemoblazeAccounts.getUsername();
         password = DemoblazeAccounts.getPassword();
         setUp();
-        HeaderPage headerPage = new HeaderPage(driver);
+        HomePage homePage = new HomePage(driver);
 
-        headerPage
+        homePage
                 .clickSignupMenu()
                 .setUsername(username)
                 .setPassword(password)
