@@ -23,7 +23,7 @@ public class ArticlePage extends HeaderPage{
 
     @FindBy(xpath = "//a[@onclick='addToCart(1)']")
     private WebElement addToCartButton;
-    @FindBy(xpath = "//div[@id='tbodyid']//h2[@class='name']")
+    @FindBy(xpath = "//div[@id='tbodyid']//h2")
     private WebElement articleName;
     @FindBy(xpath = "//div[@id='tbodyid']//h3[@class='price-container']")
     private WebElement articlePrice;

@@ -17,7 +17,7 @@ import static AutomationProject.PageObjectModel.DemoblazePage.*;
 
 
 public class DB004_E2E {
-    AtomicReference<String> strRef;
+AtomicReference<String> strRef = new AtomicReference<>("");
 
     @BeforeAll
     public static void preconditions() {

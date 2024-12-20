@@ -21,8 +21,8 @@ public class HomePage extends HeaderPage {
 
     public ArticlePage clickArticle(String articleName) {
         String xpath = String.format("//a[contains(text(), '%s')]", articleName);
-        WebElement article = driver.findElement(By.xpath(xpath));
-        wait.until(ExpectedConditions.visibilityOf(article));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement article = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
         article.click();
         return new ArticlePage(driver);
     }
