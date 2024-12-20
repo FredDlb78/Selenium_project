@@ -1,6 +1,7 @@
 package AutomationProject.Tests;
 
 import AutomationProject.Credentials.DemoblazeAccounts;
+import AutomationProject.PageObjectModel.ContactPopup;
 import AutomationProject.PageObjectModel.HeaderPage;
 import AutomationProject.PageObjectModel.HomePage;
 import io.qameta.allure.junit5.AllureJunit5;
@@ -41,7 +42,8 @@ public class DB003_Contact {
 
         headerPage
                 .clickContactMenu()
-                .assertTitleEquals("New message")
+                .retrieveTitle(strRef)
+                .assertEquals("New message", strRef.get(), "Wrong title", ContactPopup.class)
                 .setContactEmail(email)
                 .clickCloseButton() //ajouter un temps de pause
                 .clickContactMenu()
