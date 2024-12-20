@@ -3,6 +3,8 @@ package AutomationProject.Tests;
 import AutomationProject.Credentials.DemoblazeAccounts;
 import AutomationProject.PageObjectModel.DemoblazePage;
 import AutomationProject.PageObjectModel.HeaderPage;
+import AutomationProject.PageObjectModel.HomePage;
+import AutomationProject.PageObjectModel.LoginPopup;
 import io.qameta.allure.junit5.AllureJunit5;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
@@ -24,20 +26,24 @@ public class DB002_Login extends DemoblazePage {
     String wrongPassword = "wrongPassword123456789";
     AtomicReference<String> strRef;
 
+    public DB002_Login() {
+        super(driver);
+    }
+
     @BeforeAll
     public static void testInscription() {
         DemoblazeAccounts.newAccount();
         username = DemoblazeAccounts.getUsername();
         password = DemoblazeAccounts.getPassword();
         setUp();
-        HeaderPage headerPage = new HeaderPage(driver);
+        HomePage homePage = new HomePage(driver);
 
-        headerPage
+        homePage
                 .clickSignupMenu()
                 .setUsername(username)
                 .setPassword(password)
                 .clickSignUpButton()
-                .verifyAlertTextAfterSuccess("Sign up successful.", "Alert message is not correct")
+                .acceptAndVerifyAlertText("Sign up successful.", "Alert message is not correct", HomePage.class)
                 .clickHomeMenu();
     }
 
@@ -59,26 +65,26 @@ public class DB002_Login extends DemoblazePage {
                 .setUsername(wrongUsername)
                 .setPassword(password)
                 .clickLoginButtonThenFailed()
-                .verifyAlertTextThenFailed("User does not exist.",
-                        "Alert message is not correct")
+                .acceptAndVerifyAlertText("User does not exist.",
+                        "Alert message is not correct", LoginPopup.class)
                 //Wrong password
                 .setUsername(username)
                 .setPassword(wrongPassword)
                 .clickLoginButtonThenFailed()
-                .verifyAlertTextThenFailed("Wrong password.",
-                        "Alert message is not correct")
+                .acceptAndVerifyAlertText("Wrong password.",
+                        "Alert message is not correct", LoginPopup.class)
                 //Empty username
                 .setUsername("")
                 .setPassword(password)
                 .clickLoginButtonThenFailed()
-                .verifyAlertTextThenFailed("Please fill out Username and Password.",
-                        "Alert message is not correct")
+                .acceptAndVerifyAlertText("Please fill out Username and Password.",
+                        "Alert message is not correct", LoginPopup.class)
                 //Empty password
                 .setUsername(wrongUsername)
                 .setPassword("")
                 .clickLoginButtonThenFailed()
-                .verifyAlertTextThenFailed("Please fill out Username and Password.",
-                        "Alert message is not correct")
+                .acceptAndVerifyAlertText("Please fill out Username and Password.",
+                        "Alert message is not correct", LoginPopup.class)
                 .setUsername(username)
                 .setPassword(password)
                 .clickLoginButton()

@@ -2,6 +2,7 @@ package AutomationProject.Tests;
 
 import AutomationProject.Credentials.DemoblazeAccounts;
 import AutomationProject.PageObjectModel.HeaderPage;
+import AutomationProject.PageObjectModel.HomePage;
 import io.qameta.allure.junit5.AllureJunit5;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
@@ -49,7 +50,8 @@ public class DB003_Contact {
                 .clickContactMenu()
                 .setContactMessage(message)
                 .clickSendMessageButton()
-                .verifyAlertTextAfterSuccess("Thanks for the message!!", "Wrong alert message");
+                .acceptAndVerifyAlertText("Thanks for the message!!", "Wrong alert message"
+                , HomePage.class);
     }
 
     @AfterEach
