@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ArticlePage extends HeaderPage {
     private WebDriverWait wait;
@@ -36,6 +37,16 @@ public class ArticlePage extends HeaderPage {
     public ArticlePage clickAddToCartButton() {
         wait.until(ExpectedConditions.visibilityOf(addToCartButton));
         addToCartButton.click();
+        return this;
+    }
+
+    @Step("Retrieve article name {0}")
+    public ArticlePage retrieveArticleName(AtomicReference<String> strRef) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(articleName));
+
+        String articleNameText = articleName.getText();
+        strRef.set(articleNameText);
         return this;
     }
 
