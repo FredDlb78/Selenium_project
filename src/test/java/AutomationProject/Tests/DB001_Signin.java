@@ -3,6 +3,7 @@ package AutomationProject.Tests;
 import AutomationProject.Credentials.DemoblazeAccounts;
 import AutomationProject.PageObjectModel.HeaderPage;
 import AutomationProject.PageObjectModel.DemoblazePage;
+import AutomationProject.PageObjectModel.HomePage;
 import AutomationProject.PageObjectModel.SignupPopup;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit5.AllureJunit5;
@@ -18,6 +19,10 @@ import static io.qameta.allure.Allure.step;
 public class DB001_Signin extends DemoblazePage {
     static String username;
     static String password;
+
+    public DB001_Signin() {
+        super(driver);
+    }
 
     // Cette méthode s'exécute une seule fois avant tous les tests
     @BeforeAll
@@ -46,7 +51,7 @@ public class DB001_Signin extends DemoblazePage {
                     .setUsername(username)
                     .setPassword(password)
                     .clickSignUpButton()
-                    .verifyAlertTextAfterSuccess("Sign up successful.", "Alert message is not correct")
+                    .acceptAndVerifyAlertText("Sign up successful.", "Alert message is not correct", HomePage.class)
                     .clickHomeMenu();
         });
 
@@ -56,7 +61,8 @@ public class DB001_Signin extends DemoblazePage {
                     .setUsername(username)
                     .setPassword(password)
                     .clickSignUpButton()
-                    .verifyAlertTextAfterFailed("This user already exist.", "Alert message is not correct");
+                    .acceptAndVerifyAlertText("This user already exist.", "Alert message is not correct", SignupPopup.class);
+                    //To do: Vérifier le titre de la popup
         });
 
         step("Try signing up with empty username", () -> {
@@ -64,8 +70,9 @@ public class DB001_Signin extends DemoblazePage {
                     .setUsername("")
                     .setPassword(password)
                     .clickSignUpButton()
-                    .verifyAlertTextAfterFailed("Please fill out Username and Password.",
-                            "Alert message is not correct");
+                    .acceptAndVerifyAlertText("Please fill out Username and Password.",
+                            "Alert message is not correct", SignupPopup.class);
+            //To do: Vérifier le titre de la popup
         });
 
         step("Try signing up with empty password", () -> {
@@ -73,8 +80,8 @@ public class DB001_Signin extends DemoblazePage {
                     .setUsername(username)
                     .setPassword("")
                     .clickSignUpButton()
-                    .verifyAlertTextAfterFailed("Please fill out Username and Password.",
-                            "Alert message is not correct");
+                    .acceptAndVerifyAlertText("Please fill out Username and Password.",
+                            "Alert message is not correct", SignupPopup.class);
         });
     }
 

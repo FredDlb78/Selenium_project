@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class ArticlePage extends HeaderPage {
+public class ArticlePage extends HeaderPage{
     private WebDriverWait wait;
 
     public ArticlePage(WebDriver driver) {
@@ -27,18 +27,10 @@ public class ArticlePage extends HeaderPage {
     private WebElement articleName;
     @FindBy(xpath = "//div[@id='tbodyid']//h3[@class='price-container']")
     private WebElement articlePrice;
-    @FindBy(xpath = "//div[@class='item active']//img[@src='imgs/galaxy_s6.jpg']")
-    private WebElement articleImage;
     @FindBy(xpath = "//div[@id='more-information']")
     private WebElement articleDescription;
-// Faire les assertions sur ArticlePage
-
-    @Step("Click on Add to cart button")
-    public ArticlePage clickAddToCartButton() {
-        wait.until(ExpectedConditions.visibilityOf(addToCartButton));
-        addToCartButton.click();
-        return this;
-    }
+    @FindBy(xpath = "//img[@src='imgs/galaxy_s6.jpg']")
+    private WebElement articleImage;
 
     @Step("Retrieve article name {0}")
     public ArticlePage retrieveArticleName(AtomicReference<String> strRef) {
@@ -50,19 +42,10 @@ public class ArticlePage extends HeaderPage {
         return this;
     }
 
-    @Step("Verify alert text popup {0}")
-    public ArticlePage acceptAndVerifyAlertText(String expectedAlertText, String errorMessage) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        try {
-            wait.until(ExpectedConditions.alertIsPresent());
-            String alertText = driver.switchTo().alert().getText();
-            if (!alertText.equals(expectedAlertText)) {
-                throw new AssertionError(errorMessage);
-            }
-            driver.switchTo().alert().accept();
-        } catch (Exception e) {
-            Assertions.fail("No alert found or error occurred: " + e.getMessage());
-        }
+    @Step("Click on Add to cart button")
+    public ArticlePage clickAddToCartButton() {
+        wait.until(ExpectedConditions.visibilityOf(addToCartButton));
+        addToCartButton.click();
         return this;
     }
 

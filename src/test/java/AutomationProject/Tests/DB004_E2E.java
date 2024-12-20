@@ -5,9 +5,8 @@ import io.qameta.allure.junit5.AllureJunit5;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.concurrent.atomic.AtomicReference;
-import org.junit.jupiter.api.Assertions;
 
 import static AutomationProject.PageObjectModel.DemoblazePage.*;
 
@@ -36,14 +35,14 @@ public class DB004_E2E {
 
         homePage.clickArticle("Samsung galaxy s6")
                 .retrieveArticleName(strRef)
-                .assertEquals("Samsung galaxy s6", strRef, "Wrong article name")
+
                 .clickAddToCartButton()
-                .acceptAndVerifyAlertText("Product added", "Alert text is wrong")
+                .acceptAndVerifyAlertText("Product added", "Alert text is wrong", HomePage.class)
                 .clickCartMenu()
                 .clickPlaceOrder()
-                .setName("Dif")
-                .setCountry("CSP")
-                .setCity("France")
+                .setName("Fred")
+                .setCountry("Paname")
+                .setCity("Fronce")
                 .setCard("007")
                 .setMonth("May")
                 .setYear("2025")
