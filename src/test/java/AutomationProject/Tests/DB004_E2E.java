@@ -1,5 +1,6 @@
 package AutomationProject.Tests;
 
+import AutomationProject.PageObjectModel.ArticlePage;
 import AutomationProject.PageObjectModel.HomePage;
 import io.qameta.allure.junit5.AllureJunit5;
 import jdk.jfr.Description;
@@ -35,7 +36,7 @@ AtomicReference<String> strRef = new AtomicReference<>("");
 
         homePage.clickArticle("Samsung galaxy s6")
                 .retrieveArticleName(strRef)
-
+                .assertEquals("Samsung galaxy s6", strRef.get(), "Wrong article name", ArticlePage.class)
                 .clickAddToCartButton()
                 .acceptAndVerifyAlertText("Product added", "Alert text is wrong", HomePage.class)
                 .clickCartMenu()
@@ -49,5 +50,9 @@ AtomicReference<String> strRef = new AtomicReference<>("");
                 .clickPurchase()
                 .clickOk();
 
+    }
+    @AfterEach
+    public void tearDownTest() {
+        tearDown();
     }
 }
