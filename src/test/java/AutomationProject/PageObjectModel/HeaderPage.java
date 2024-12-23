@@ -65,10 +65,9 @@ public class HeaderPage extends DemoblazePage {
     }
 
     @Step("Click on Home Menu")
-    public HeaderPage clickHomeMenu() {
+    public HomePage clickHomeMenu() {
         homeMenu.click();
-        return this;
-        // a mettre à jour quand on aura créé la page HomeMenu
+        return new HomePage(driver);
     }
 
     @Step("Retrieve Welcome + name {0} instead of Sign up menu")
