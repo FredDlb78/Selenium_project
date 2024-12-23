@@ -1,5 +1,6 @@
 package AutomationProject.Tests;
 
+import AutomationProject.PageObjectModel.ArticlePage;
 import AutomationProject.PageObjectModel.HomePage;
 import io.qameta.allure.junit5.AllureJunit5;
 import jdk.jfr.Description;
@@ -17,6 +18,7 @@ import static AutomationProject.PageObjectModel.DemoblazePage.*;
 
 
 public class DB004_E2E {
+AtomicReference<String> strRef = new AtomicReference<>("");
 
     @BeforeAll
     public static void preconditions() {
@@ -33,10 +35,24 @@ public class DB004_E2E {
         HomePage homePage = new HomePage(driver);
 
         homePage.clickArticle("Samsung galaxy s6")
+                .retrieveArticleName(strRef)
+                .assertEquals("Samsung galaxy s6", strRef.get(), "Wrong article name", ArticlePage.class)
                 .clickAddToCartButton()
                 .acceptAndVerifyAlertText("Product added", "Alert text is wrong", HomePage.class)
                 .clickCartMenu()
-                .clickPlaceOrder();
+                .clickPlaceOrder()
+                .setName("Fred")
+                .setCountry("Paname")
+                .setCity("Fronce")
+                .setCard("007")
+                .setMonth("May")
+                .setYear("2025")
+                .clickPurchase()
+                .clickOk();
 
+    }
+    @AfterEach
+    public void tearDownTest() {
+        tearDown();
     }
 }

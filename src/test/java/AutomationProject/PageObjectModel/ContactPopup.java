@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -39,11 +40,13 @@ public class ContactPopup extends DemoblazePage{
     @FindBy(xpath = "//div[@id='exampleModal']//button[contains(text(), 'Close')]\n")
     private WebElement closeButton;
 
-    @Step("Assert title {0}")
-    public ContactPopup assertTitleEquals(String expectedTitle){
+    @Step("Retrieve title {0}")
+    public ContactPopup retrieveTitle(AtomicReference<String> strRef) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(title));
-        assertEquals(expectedTitle, title.getText(), "Wrong title");
+
+        String titleText = title.getText();
+        strRef.set(titleText);
         return this;
     }
     @Step("Set contact email")

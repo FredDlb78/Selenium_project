@@ -45,4 +45,15 @@ public class DemoblazePage {
         }
         return PageFactory.initElements(driver, returnType);
     }
+    @Step("Assert Equals {0}")
+    public <P> P assertEquals(String expectedResult, String actualResult, String errorMessage, Class<P> returnType) {
+        try {
+            if (!actualResult.equals(expectedResult)) {
+                throw new AssertionError(errorMessage);
+            }
+        } catch (Exception e) {
+            Assertions.fail("Wrong result" + e.getMessage());
+        }
+        return PageFactory.initElements(driver, returnType);
+    }
 }
