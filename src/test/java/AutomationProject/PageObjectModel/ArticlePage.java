@@ -1,7 +1,7 @@
 package AutomationProject.PageObjectModel;
 
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,7 +21,7 @@ public class ArticlePage extends HeaderPage{
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//a[@onclick='addToCart(1)']")
+    @FindBy(xpath = "//a[contains(text(),'Add to cart')]")
     private WebElement addToCartButton;
     @FindBy(xpath = "//div[@id='tbodyid']//h2")
     private WebElement articleName;
@@ -32,6 +32,35 @@ public class ArticlePage extends HeaderPage{
     @FindBy(xpath = "//img[@src='imgs/galaxy_s6.jpg']")
     private WebElement articleImage;
 
+    @Step("Check if the image with src contains '{0}' is displayed")
+    public ArticlePage checkImageIsDisplayed(String partialSrc) {
+        WebElement image = driver.findElement(By.xpath("//img[contains(@src, '" + partialSrc + "')]"));
+        if (image.isDisplayed()) {
+            System.out.println("L'image avec le src contenant '" + partialSrc + "' est affichée.");
+        } else {
+            System.out.println("L'image avec le src contenant '" + partialSrc + "' n'est pas affichée.");
+        }
+        return this;
+    }
+
+    @Step("Retrieve article description {0}")
+    public ArticlePage retrieveArticleDescription(AtomicReference<String> strRef) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(articleDescription));
+
+        String articleDescriptionText = articleDescription.getText();
+        strRef.set(articleDescriptionText);
+        return this;
+    }
+    @Step("Retrieve article price {0}")
+    public ArticlePage retrieveArticlePrice(AtomicReference<String> strRef) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(articlePrice));
+
+        String articlePriceText = articlePrice.getText();
+        strRef.set(articlePriceText);
+        return this;
+    }
     @Step("Retrieve article name {0}")
     public ArticlePage retrieveArticleName(AtomicReference<String> strRef) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
