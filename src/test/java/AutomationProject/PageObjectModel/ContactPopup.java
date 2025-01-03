@@ -1,7 +1,6 @@
 package AutomationProject.PageObjectModel;
 
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,13 +41,12 @@ public class ContactPopup extends DemoblazePage{
 
     @Step("Retrieve title {0}")
     public ContactPopup retrieveTitle(AtomicReference<String> strRef) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(title));
-
         String titleText = title.getText();
         strRef.set(titleText);
         return this;
     }
+
     @Step("Set contact email")
     public ContactPopup setContactEmail(String email) {
         wait.until(ExpectedConditions.visibilityOf(emailInput));

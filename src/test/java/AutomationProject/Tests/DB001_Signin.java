@@ -42,10 +42,10 @@ public class DB001_Signin extends DemoblazePage {
     @DisplayName("DB001 - All cases")
     @Description("All cases")
     public void Signin01() {
-        HeaderPage headerPage = new HeaderPage(driver);
+        HomePage homePage = new HomePage(driver);
         SignupPopup signupPopup = new SignupPopup(driver);
 
-        step("Open Sign up popup", () -> headerPage.clickSignupMenu());
+        step("Open Sign up popup", () -> homePage.clickSignupMenu());
         step("Fill in signup informations and submit", () -> {
             signupPopup
                     .setUsername(username)
@@ -55,7 +55,7 @@ public class DB001_Signin extends DemoblazePage {
                     .clickHomeMenu();
         });
 
-        step("Open Sign up popup again", () -> headerPage.clickSignupMenu());
+        step("Open Sign up popup again", () -> homePage.clickSignupMenu());
         step("Try signing up with the same credentials", () -> {
             signupPopup
                     .setUsername(username)

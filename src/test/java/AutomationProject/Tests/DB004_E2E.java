@@ -1,6 +1,7 @@
 package AutomationProject.Tests;
 
 import AutomationProject.PageObjectModel.ArticlePage;
+import AutomationProject.PageObjectModel.CartPage;
 import AutomationProject.PageObjectModel.HomePage;
 import io.qameta.allure.junit5.AllureJunit5;
 import jdk.jfr.Description;
@@ -19,6 +20,8 @@ import static AutomationProject.PageObjectModel.DemoblazePage.*;
 
 public class DB004_E2E {
 AtomicReference<String> strRef = new AtomicReference<>("");
+AtomicReference<Integer> additionTotal = new AtomicReference<>(0);
+AtomicReference<Integer> totalPrice = new AtomicReference<>(0);
 
     @BeforeAll
     public static void preconditions() {
@@ -30,7 +33,7 @@ AtomicReference<String> strRef = new AtomicReference<>("");
     @DisplayName("DB004 - E2E - Cart")
     @Description("Cases:"
             + "Passing case")
-    public void Cart() {
+    public void Cart() throws InterruptedException {
 
         HomePage homePage = new HomePage(driver);
 
@@ -61,7 +64,24 @@ AtomicReference<String> strRef = new AtomicReference<>("");
                 .checkImageIsDisplayed("Lumia_1520")
                 .clickAddToCartButton()
                 .acceptAndVerifyAlertText("Product added", "Alert text is wrong", HomePage.class)
+                .clickHomeMenu()
+                .clickArticle("Iphone 6 32gb")
+                .retrieveArticleName(strRef)
+                .assertEquals("Iphone 6 32gb", strRef.get(), "Wrong article name", ArticlePage.class)
+                .retrieveArticlePrice(strRef)
+                .assertEquals("$790 *includes tax", strRef.get(), "Wrong article price", ArticlePage.class)
+                .retrieveArticleDescription(strRef)
+                .assertEquals("Product description\n" +
+                                "It comes with 1GB of RAM. The phone packs 16GB of internal storage cannot be expanded. As far as the cameras are concerned, the Apple iPhone 6 packs a 8-megapixel primary camera on the rear and a 1.2-megapixel front shooter for selfies.",
+                        strRef.get(), "Wrong article Description", ArticlePage.class)
+                .checkImageIsDisplayed("iphone_6")
+                .clickAddToCartButton()
+                .acceptAndVerifyAlertText("Product added", "Alert text is wrong", HomePage.class)
                 .clickCartMenu()
+                .clickDelete(1)
+                .calculateTotalPrice(additionTotal)
+                .getTotalPrice(totalPrice)
+                .assertEquals(totalPrice.get(), additionTotal.get(), "Wrong Total Price", CartPage.class)
                 .clickPlaceOrder()
                 .setName("Fred")
                 .setCountry("Paname")

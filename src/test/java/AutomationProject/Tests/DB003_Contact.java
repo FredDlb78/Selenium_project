@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DB003_Contact {
 
 
-    AtomicReference<String> strRef;
+    AtomicReference<String> strRef = new AtomicReference<>("");
 
     @BeforeAll
     public static void preconditions() {
@@ -32,23 +32,23 @@ public class DB003_Contact {
     @Test
     @DisplayName("DB003 - All cases")
     @Description("Scénario Passant Contact")
-    public void Contact() {
+    public void Contact() throws InterruptedException {
         DemoblazeAccounts.newAccount();
         String name = DemoblazeAccounts.getUsername();
         String email = DemoblazeAccounts.getEmail();
         String message = DemoblazeAccounts.getMessage();
 
-        HeaderPage headerPage = new HeaderPage(driver);
+        HomePage homePage = new HomePage(driver);
 
-        headerPage
+        homePage
                 .clickContactMenu()
                 .retrieveTitle(strRef)
                 .assertEquals("New message", strRef.get(), "Wrong title", ContactPopup.class)
                 .setContactEmail(email)
-                .clickCloseButton() //ajouter un temps de pause
+                .clickCloseButton()
                 .clickContactMenu()
                 .setContactName(name)
-                .clickXButton() //ajouter un temps de pause
+                .clickXButton()
                 .clickContactMenu()
                 .setContactMessage(message)
                 .clickSendMessageButton()
