@@ -42,7 +42,7 @@ public class DB001_Signin extends DemoblazePage {
     @DisplayName("DB001 - All cases")
     @Description("All cases")
     public void Signin01() {
-        HeaderPage headerPage = new HeaderPage(driver);
+        HeaderPage headerPage = new HeaderPage();
         SignupPopup signupPopup = new SignupPopup(driver);
 
         step("Open Sign up popup", () -> headerPage.clickSignupMenu());

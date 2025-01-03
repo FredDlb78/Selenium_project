@@ -31,7 +31,7 @@ public class HeaderPage extends DemoblazePage {
     private WebElement cartMenu;
 
 
-    public HeaderPage(WebDriver driver) {
+    public HeaderPage() {
         super(driver);
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));

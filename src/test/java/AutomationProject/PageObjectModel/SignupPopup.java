@@ -1,7 +1,6 @@
 package AutomationProject.PageObjectModel;
 
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -60,12 +59,12 @@ public class SignupPopup extends DemoblazePage{
     @Step("Click on x button")
     public HeaderPage clickXButton() {
         crossButton.click();
-        return new HeaderPage(driver);
+        return new HeaderPage();
     }
     @Step("Click on close button")
     public HeaderPage clickCloseButton() {
         closeButton.click();
-        return new HeaderPage(driver);
+        return new HeaderPage();
     }
 
 }

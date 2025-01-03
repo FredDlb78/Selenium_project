@@ -1,6 +1,7 @@
 package AutomationProject.Tests;
 
 import AutomationProject.PageObjectModel.ArticlePage;
+import AutomationProject.PageObjectModel.CartPage;
 import AutomationProject.PageObjectModel.HomePage;
 import io.qameta.allure.junit5.AllureJunit5;
 import jdk.jfr.Description;
@@ -19,6 +20,8 @@ import static AutomationProject.PageObjectModel.DemoblazePage.*;
 
 public class DB004_E2E {
 AtomicReference<String> strRef = new AtomicReference<>("");
+AtomicReference<String> additionTotal = new AtomicReference<>("");
+AtomicReference<String> totalPrice = new AtomicReference<>("");
 
     @BeforeAll
     public static void preconditions() {
@@ -76,6 +79,9 @@ AtomicReference<String> strRef = new AtomicReference<>("");
                 .acceptAndVerifyAlertText("Product added", "Alert text is wrong", HomePage.class)
                 .clickCartMenu()
                 .clickDelete(1)
+                .calculateTotalPrice(additionTotal)
+                .getTotalPrice(totalPrice)
+                .assertEquals(totalPrice.get(), additionTotal.get(), "Wrong Total Price", CartPage.class)
                 .clickPlaceOrder()
                 .setName("Fred")
                 .setCountry("Paname")

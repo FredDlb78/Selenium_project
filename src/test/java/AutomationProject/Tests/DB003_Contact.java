@@ -38,7 +38,7 @@ public class DB003_Contact {
         String email = DemoblazeAccounts.getEmail();
         String message = DemoblazeAccounts.getMessage();
 
-        HeaderPage headerPage = new HeaderPage(driver);
+        HeaderPage headerPage = new HeaderPage();
 
         headerPage
                 .clickContactMenu()
