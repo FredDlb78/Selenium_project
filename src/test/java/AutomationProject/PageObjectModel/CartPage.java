@@ -18,7 +18,7 @@ public class CartPage extends HeaderPage{
     private WebDriverWait wait;
 
     public CartPage(WebDriver driver) {
-        super();
+        super(driver);
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
@@ -30,11 +30,12 @@ public class CartPage extends HeaderPage{
     @FindBy(id = "totalp")
     private WebElement totalPrice;
 
-    public PlaceOrderPopup clickPlaceOrder() {
-        placeOrderButton.click();
+    public PlaceOrderPopup clickPlaceOrder() throws InterruptedException {
+        WebElement placeOrderBtn = wait.until(ExpectedConditions.elementToBeClickable(placeOrderButton));
+        Thread.sleep(1000); // Pause d'une seconde
+        placeOrderBtn.click();
         return new PlaceOrderPopup(driver);
     }
-
 
     @Step("Click on delete button")
     public CartPage clickDelete(Integer index) {
@@ -45,8 +46,8 @@ public class CartPage extends HeaderPage{
         return this;
     }
 
-    public CartPage calculateTotalPrice(AtomicReference<String> totalRef) {
-        String total = "";
+    public CartPage calculateTotalPrice(AtomicReference<Integer> totalRef) {
+        int total = 0;
         String xpathTemplate = "//*[@id='tbodyid']/tr[%d]/td[3]";
         int index = 1;
 
@@ -68,10 +69,17 @@ public class CartPage extends HeaderPage{
         return this;
     }
 
-    public CartPage getTotalPrice(AtomicReference<String> strRef) {
+
+    public CartPage getTotalPrice(AtomicReference<Integer> intRef) {
         String priceText = wait.until(ExpectedConditions.visibilityOf(totalPrice)).getText().trim();
-        strRef.set(priceText);
+        try {
+            int price = Integer.parseInt(priceText);
+            intRef.set(price);
+        } catch (NumberFormatException e) {
+            System.err.println("Erreur lors de la conversion du prix en entier: " + priceText);
+        }
         return this;
     }
+
 
 }

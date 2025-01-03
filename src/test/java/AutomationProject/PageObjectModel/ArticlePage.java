@@ -16,7 +16,7 @@ public class ArticlePage extends HeaderPage{
     private WebDriverWait wait;
 
     public ArticlePage(WebDriver driver) {
-        super();
+        super(driver);
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }

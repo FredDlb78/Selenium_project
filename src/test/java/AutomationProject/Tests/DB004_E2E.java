@@ -20,8 +20,8 @@ import static AutomationProject.PageObjectModel.DemoblazePage.*;
 
 public class DB004_E2E {
 AtomicReference<String> strRef = new AtomicReference<>("");
-AtomicReference<String> additionTotal = new AtomicReference<>("");
-AtomicReference<String> totalPrice = new AtomicReference<>("");
+AtomicReference<Integer> additionTotal = new AtomicReference<>(0);
+AtomicReference<Integer> totalPrice = new AtomicReference<>(0);
 
     @BeforeAll
     public static void preconditions() {
@@ -33,7 +33,7 @@ AtomicReference<String> totalPrice = new AtomicReference<>("");
     @DisplayName("DB004 - E2E - Cart")
     @Description("Cases:"
             + "Passing case")
-    public void Cart() {
+    public void Cart() throws InterruptedException {
 
         HomePage homePage = new HomePage(driver);
 

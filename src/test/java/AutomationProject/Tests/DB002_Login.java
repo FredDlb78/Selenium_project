@@ -57,7 +57,7 @@ public class DB002_Login extends DemoblazePage {
             "- Passing case")
     public void Login() {
         strRef = new AtomicReference<>();
-        HeaderPage headerPage = new HeaderPage();
+        HeaderPage headerPage = new HeaderPage(driver);
 
         headerPage
                 .clickLoginMenu()

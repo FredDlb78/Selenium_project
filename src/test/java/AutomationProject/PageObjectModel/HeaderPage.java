@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class HeaderPage extends DemoblazePage {
     protected WebDriver driver;
-    private WebDriverWait wait;
+    protected WebDriverWait wait;
 
     @FindBy(id = "signin2")
     private WebElement signUpMenu;
@@ -30,8 +30,7 @@ public class HeaderPage extends DemoblazePage {
     @FindBy(id = "cartur")
     private WebElement cartMenu;
 
-
-    public HeaderPage() {
+    public HeaderPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -58,7 +57,6 @@ public class HeaderPage extends DemoblazePage {
 
     @Step("Click on About us Menu")
     public AboutUsPopup clickAboutUsMenu() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(aboutUsMenu));
         aboutUsMenu.click();
         return new AboutUsPopup(driver);
@@ -72,18 +70,17 @@ public class HeaderPage extends DemoblazePage {
 
     @Step("Retrieve Welcome + name {0} instead of Sign up menu")
     public HeaderPage retrieveWelcomeUsername(AtomicReference<String> strRef) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(welcomeUsername));
-
         String usernameText = welcomeUsername.getText();
         strRef.set(usernameText);
         return this;
     }
 
     @Step("Click on Contact Menu")
-    public ContactPopup clickContactMenu() {
+    public ContactPopup clickContactMenu() throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOf(contactMenu));
+        Thread.sleep(1000);
         contactMenu.click();
         return new ContactPopup(driver);
     }
-
 }

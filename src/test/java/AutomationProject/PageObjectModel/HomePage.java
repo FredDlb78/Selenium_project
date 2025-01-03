@@ -13,18 +13,15 @@ public class HomePage extends HeaderPage {
     private WebDriverWait wait;
 
     public HomePage(WebDriver driver) {
-        super();
+        super(driver);
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }
 
     public ArticlePage clickArticle(String articleName) {
         String xpath = String.format("//a[contains(text(), '%s')]", articleName);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement article = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
         article.click();
         return new ArticlePage(driver);
     }
-
-
 }

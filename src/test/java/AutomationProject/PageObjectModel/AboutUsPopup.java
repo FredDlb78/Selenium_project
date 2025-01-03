@@ -41,12 +41,12 @@ public class AboutUsPopup {
     @Step("Click on X button")
     public HeaderPage clickXButton() {
         crossButton.click();
-        return new HeaderPage();
+        return new HeaderPage(driver);
     }
     @Step("Click on close button")
     public HeaderPage clickCloseButton() {
         closeButton.click();
-        return new HeaderPage();
+        return new HeaderPage(driver);
     }
     @Step("Click on close button")
     public AboutUsPopup clickPlayVideoButton() {
