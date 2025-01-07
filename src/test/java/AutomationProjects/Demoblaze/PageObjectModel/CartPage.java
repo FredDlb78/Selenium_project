@@ -30,6 +30,7 @@ public class CartPage extends HeaderPage{
     @FindBy(id = "totalp")
     private WebElement totalPrice;
 
+    @Step("Click on Place Order")
     public PlaceOrderPopup clickPlaceOrder() throws InterruptedException {
         WebElement placeOrderBtn = wait.until(ExpectedConditions.elementToBeClickable(placeOrderButton));
         Thread.sleep(1000); // Pause d'une seconde
