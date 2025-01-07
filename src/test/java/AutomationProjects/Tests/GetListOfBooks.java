@@ -1,6 +1,6 @@
-package AutomationProject.Tests;
+package AutomationProjects.Tests;
 
-import AutomationProject.SimpleBookApi.ApiMethods;
+import AutomationProjects.SimpleBookApi.ApiMethods;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

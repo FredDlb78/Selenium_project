@@ -1,4 +1,4 @@
-package AutomationProject.Credentials;
+package AutomationProjects.Demoblaze.Credentials;
 
 import java.util.Random;
 
