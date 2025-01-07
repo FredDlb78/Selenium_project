@@ -1,4 +1,4 @@
-package AutomationProject.PageObjectModel;
+package AutomationProjects.Demoblaze.PageObjectModel;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Step;

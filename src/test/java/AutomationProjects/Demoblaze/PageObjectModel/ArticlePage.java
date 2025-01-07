@@ -1,4 +1,4 @@
-package AutomationProject.PageObjectModel;
+package AutomationProjects.Demoblaze.PageObjectModel;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;

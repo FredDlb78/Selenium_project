@@ -1,10 +1,9 @@
-package AutomationProject.Tests;
+package AutomationProjects.Tests;
 
-import AutomationProject.Credentials.DemoblazeAccounts;
-import AutomationProject.PageObjectModel.HeaderPage;
-import AutomationProject.PageObjectModel.DemoblazePage;
-import AutomationProject.PageObjectModel.HomePage;
-import AutomationProject.PageObjectModel.SignupPopup;
+import AutomationProjects.Demoblaze.Credentials.DemoblazeAccounts;
+import AutomationProjects.Demoblaze.PageObjectModel.DemoblazePage;
+import AutomationProjects.Demoblaze.PageObjectModel.HomePage;
+import AutomationProjects.Demoblaze.PageObjectModel.SignupPopup;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit5.AllureJunit5;
 import org.junit.jupiter.api.*;

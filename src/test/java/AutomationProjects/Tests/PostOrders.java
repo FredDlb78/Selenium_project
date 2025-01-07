@@ -1,4 +1,4 @@
-package AutomationProject.Tests;
+package AutomationProjects.Tests;
 
 import static org.junit.jupiter.api.Assertions.fail;
 

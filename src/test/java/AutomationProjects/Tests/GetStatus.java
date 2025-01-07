@@ -1,4 +1,4 @@
-package AutomationProject.Tests;
+package AutomationProjects.Tests;
 
 import jdk.jfr.Description;
 import org.junit.jupiter.api.DisplayName;

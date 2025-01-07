@@ -1,9 +1,8 @@
-package AutomationProject.Tests;
+package AutomationProjects.Tests;
 
-import AutomationProject.Credentials.DemoblazeAccounts;
-import AutomationProject.PageObjectModel.ContactPopup;
-import AutomationProject.PageObjectModel.HeaderPage;
-import AutomationProject.PageObjectModel.HomePage;
+import AutomationProjects.Demoblaze.Credentials.DemoblazeAccounts;
+import AutomationProjects.Demoblaze.PageObjectModel.ContactPopup;
+import AutomationProjects.Demoblaze.PageObjectModel.HomePage;
 import io.qameta.allure.junit5.AllureJunit5;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
@@ -11,8 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-import static AutomationProject.PageObjectModel.DemoblazePage.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static AutomationProjects.Demoblaze.PageObjectModel.DemoblazePage.*;
 
 @ExtendWith(AllureJunit5.class)
 @Timeout(60 * 2)
