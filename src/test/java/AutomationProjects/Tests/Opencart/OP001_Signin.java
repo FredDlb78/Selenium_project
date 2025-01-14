@@ -61,40 +61,63 @@ public class OP001_Signin {
 
     @Test
     @DisplayName("OP002 - Non passing cases")
-    @Description("All fields are empty")
+    @Description("Low fields limit")
     public void Signin02() {
 
-        HomePage homePage = new HomePage(driver);
+        signinNonPassingCases("", "", "", "78", "B2°",
+                "", "hello"
+        );
+    }
 
-        homePage.clickOnMyAccount()
-                .clickOnRegister()
-                .setFirstName("")
-                .setLastName("")
-                .setEmail("")
-                .setPhone("")
-                .setPassword("")
-                .setPasswordConfirmation("")
-                .selectRadioNewsletter("Yes")
-                .checkPrivacyPolicy()
-                .clickContinueThenFailed()
-                .retrieveFirstNameErrorMessage(strRef)
-                .assertContains("First Name must be between 1 and 32 characters!", strRef, "Wrong error message for first name", RegisterPage.class)
-                .retrieveLastNameErrorMessage(strRef)
-                .assertContains("Last Name must be between 1 and 32 characters!", strRef, "Wrong error meesage for last name", RegisterPage.class )
-                .retrieveEmailErrorMessage(strRef)
-                .assertContains("E-Mail Address does not appear to be valid!", strRef, "Wrong error message for email", RegisterPage.class)
-                .retrieveTelephoneErrorMessage(strRef)
-                .assertContains("Telephone must be between 3 and 32 characters!", strRef, "Wrong error message for Telephone", RegisterPage.class)
-                .retrievePasswordErrorMessage(strRef)
-                .assertContains("Password must be between 4 and 20 characters!", strRef, "Wrong error message for password", RegisterPage.class)
-                .setPassword("hello")
-                .clickContinueThenFailed()
-                .retrievePasswordConfirmationErrorMessage(strRef)
-                .assertContains("Password confirmation does not match password!", strRef, "Wrong error message for password confirmation", RegisterPage.class);
+    @Test
+    @DisplayName("OP003 - Non passing cases")
+    @Description("High fields limit")
+    public void Signin03() {
+
+        signinNonPassingCases("abcdefghijklmnopqrstuvwxyz@!6*%é'",
+                "abcdefghijklmnopqrstuvwxyz@!6*%é'",
+                "", "abcdefghijklmnopqrstuvwxyz@!6*%é'",
+                "abcdefghijklmno@!6*%é'",
+                "", "abcdefghijklmno@!6*%é'"
+        );
     }
 
     @AfterEach
     public void tearDownTest() {
         tearDown();
     }
+
+    public RegisterPage signinNonPassingCases (String firstNameBis, String lastNameBis, String emailBis, String phoneBis,
+                                               String passwordBis, String passwordConfirmationBis, String password2ndTry) {
+        HomePage homePage = new HomePage(driver);
+
+        homePage.clickOnMyAccount()
+                .clickOnRegister()
+                .setFirstName(firstNameBis)
+                .setLastName(lastNameBis)
+                .setEmail(emailBis)
+                .setPhone(phoneBis)
+                .setPassword(passwordBis)
+                .setPasswordConfirmation(passwordConfirmationBis)
+                .selectRadioNewsletter("Yes")
+                .checkPrivacyPolicy()
+                .clickContinueThenFailed()
+                .retrieveFirstNameErrorMessage(strRef)
+                .assertContains("First Name must be between 1 and 32 characters!", strRef, "Wrong error message for first name", RegisterPage.class)
+                .retrieveLastNameErrorMessage(strRef)
+                .assertContains("Last Name must be between 1 and 32 characters!", strRef, "Wrong error meesage for last name", RegisterPage.class)
+                .retrieveEmailErrorMessage(strRef)
+                .assertContains("E-Mail Address does not appear to be valid!", strRef, "Wrong error message for email", RegisterPage.class)
+                .retrieveTelephoneErrorMessage(strRef)
+                .assertContains("Telephone must be between 3 and 32 characters!", strRef, "Wrong error message for Telephone", RegisterPage.class)
+                .retrievePasswordErrorMessage(strRef)
+                .assertContains("Password must be between 4 and 20 characters!", strRef, "Wrong error message for password", RegisterPage.class)
+                .setPassword(password2ndTry)
+                .clickContinueThenFailed()
+                .retrievePasswordConfirmationErrorMessage(strRef)
+                .assertContains("Password confirmation does not match password!", strRef, "Wrong error message for password confirmation", RegisterPage.class);
+    return new RegisterPage(driver);
+    }
+
+
 }
