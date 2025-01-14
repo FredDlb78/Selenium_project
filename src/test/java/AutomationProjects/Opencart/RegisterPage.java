@@ -12,10 +12,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static AutomationProjects.Opencart.OpencartPage.driver;
 
-public class RegisterPage {
+public class RegisterPage extends OpencartPage{
     private WebDriverWait wait;
 
     public RegisterPage(WebDriver driver) {
@@ -40,6 +41,19 @@ public class RegisterPage {
     private WebElement continueButton;
     @FindBy(xpath = "//input[@name=\"agree\"]")
     private WebElement privacyPolicyButton;
+    @FindBy(xpath = "//div[@class='text-danger' and contains(text(),'First')]")
+    private WebElement errorMessageFirstName;
+    @FindBy(xpath = "//div[@class='text-danger' and contains(text(),'Last')]")
+    private WebElement errorMessageLastName;
+    @FindBy(xpath = "//div[@class='text-danger' and contains(text(),'E-Mail')]")
+    private WebElement errorMessageEmail;
+    @FindBy(xpath = "//div[@class='text-danger' and contains(text(),'Telephone')]")
+    private WebElement errorMessageTelephone;
+    @FindBy(xpath = "//div[@class='text-danger' and contains(text(),'Password')]")
+    private WebElement errorMessagePassword;
+    @FindBy(xpath = "//div[@class='text-danger' and contains(text(),'Password confirmation')]")
+    private WebElement errorMessagePasswordConfirmation;
+
 
     public RegisterPage selectRadioNewsletter(String radioButton) {
         String xpath = String.format("//input[@name=\"newsletter\" and @type=\"radio\" and " +
@@ -108,6 +122,11 @@ public class RegisterPage {
         continueButton.click();
         return new SuccessPage(driver);
     }
+    @Step("Click on continue button then failed")
+    public RegisterPage clickContinueThenFailed() {
+        continueButton.click();
+        return this;
+    }
 
     @Step("Check privacy policy")
     public RegisterPage checkPrivacyPolicy() {
@@ -115,5 +134,41 @@ public class RegisterPage {
         return this;
     }
 
+    @Step("Retrieve first name error message")
+    public RegisterPage retrieveFirstNameErrorMessage(AtomicReference<String> strRef) {
+        String error = errorMessageFirstName.getText();
+        strRef.set(error);
+        return this;
+    }
+    @Step("Retrieve last name error message")
+    public RegisterPage retrieveLastNameErrorMessage(AtomicReference<String> strRef) {
+        String error = errorMessageLastName.getText();
+        strRef.set(error);
+        return this;
+    }
+    @Step("Retrieve email error message")
+    public RegisterPage retrieveEmailErrorMessage(AtomicReference<String> strRef) {
+        String error = errorMessageEmail.getText();
+        strRef.set(error);
+        return this;
+    }
+    @Step("Retrieve telephone error message")
+    public RegisterPage retrieveTelephoneErrorMessage(AtomicReference<String> strRef) {
+        String error = errorMessageTelephone.getText();
+        strRef.set(error);
+        return this;
+    }
+    @Step("Retrieve password error message")
+    public RegisterPage retrievePasswordErrorMessage(AtomicReference<String> strRef) {
+        String error = errorMessagePassword.getText();
+        strRef.set(error);
+        return this;
+    }
+    @Step("Retrieve password confirmation error message")
+    public RegisterPage retrievePasswordConfirmationErrorMessage(AtomicReference<String> strRef) {
+        String error = errorMessagePasswordConfirmation.getText();
+        strRef.set(error);
+        return this;
+    }
 
 }
