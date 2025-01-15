@@ -1,5 +1,6 @@
 package AutomationProjects.Tests.Opencart;
 
+import AutomationProjects.Opencart.AccountPage;
 import AutomationProjects.Opencart.Credentials.OpencartAccount;
 import AutomationProjects.Opencart.HomePage;
 import AutomationProjects.Opencart.RegisterPage;
@@ -19,50 +20,56 @@ import static AutomationProjects.Opencart.OpencartPage.*;
 
 public class OP001_Signin {
     AtomicReference<String> strRef = new AtomicReference<>("");
+    static String firstNameMax;
+    static String lastNameMax;
+    static String emailMax;
+    static String phoneMax;
+    static String passwordMax;
+    static String firstNameMin;
+    static String lastNameMin;
+    static String emailMin;
+    static String phoneMin;
+    static String passwordMin;
 
-    static String firstName;
-    static String lastName;
-    static String email;
-    static String phone;
-    static String password;
 
     @BeforeEach
     public void setUpBeforeEach() {
         setUp();
-        OpencartAccount.newAccount();
-        firstName = OpencartAccount.getFirstName();
-        lastName = OpencartAccount.getLastName();
-        email = OpencartAccount.getEmail();
-        phone = OpencartAccount.getPhone();
-        password = OpencartAccount.getPassword();
+        OpencartAccount.newAccountMaxCharacter();
+        firstNameMax = OpencartAccount.getFirstNameMax();
+        lastNameMax = OpencartAccount.getLastNameMax();
+        emailMax = OpencartAccount.getEmailMax();
+        phoneMax = OpencartAccount.getPhoneMax();
+        passwordMax = OpencartAccount.getPasswordMax();
+        OpencartAccount.newAccountMinCharacter();
+        firstNameMin = OpencartAccount.getFirstNameMin();
+        lastNameMin = OpencartAccount.getLastNameMin();
+        emailMin = OpencartAccount.getEmailMin();
+        phoneMin = OpencartAccount.getPhoneMin();
+        passwordMin = OpencartAccount.getPasswordMin();
     }
 
 
-//    @Test
+    @Test
     @DisplayName("OP001 - Passing cases")
-    @Description("Passing cases")
+    @Description("Passing cases high fields limit")
     public void Signin01() {
 
-        HomePage homePage = new HomePage(driver);
+        signinPassingCases(firstNameMax, lastNameMax, emailMax, phoneMax, passwordMax);
+    }
+    @Test
+    @DisplayName("OP002 - Passing cases")
+    @Description("Passing cases low fields limit")
+    public void Signin02() {
 
-        homePage.clickOnMyAccount()
-                .clickOnRegister()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(email)
-                .setPhone(phone)
-                .setPassword(password)
-                .setPasswordConfirmation(password)
-                .selectRadioNewsletter("Yes")
-                .checkPrivacyPolicy()
-                .clickContinue()
-                .clickContinue();
+        signinPassingCases(firstNameMin, lastNameMin, emailMin, phoneMin, passwordMin);
+
     }
 
     @Test
-    @DisplayName("OP002 - Non passing cases")
-    @Description("Low fields limit")
-    public void Signin02() {
+    @DisplayName("OP003 - Non passing cases")
+    @Description("Low fields limit -1")
+    public void Signin03() {
 
         signinNonPassingCases("", "", "", "78", "B2°",
                 "", "hello"
@@ -70,9 +77,9 @@ public class OP001_Signin {
     }
 
     @Test
-    @DisplayName("OP003 - Non passing cases")
-    @Description("High fields limit")
-    public void Signin03() {
+    @DisplayName("OP004 - Non passing cases")
+    @Description("High fields limit +1")
+    public void Signin04() {
 
         signinNonPassingCases("abcdefghijklmnopqrstuvwxyz@!6*%é'",
                 "abcdefghijklmnopqrstuvwxyz@!6*%é'",
@@ -87,18 +94,18 @@ public class OP001_Signin {
         tearDown();
     }
 
-    public RegisterPage signinNonPassingCases (String firstNameBis, String lastNameBis, String emailBis, String phoneBis,
-                                               String passwordBis, String passwordConfirmationBis, String password2ndTry) {
+    public RegisterPage signinNonPassingCases (String firstName, String lastName, String email, String phone,
+                                               String password, String passwordConfirmation, String password2ndTry) {
         HomePage homePage = new HomePage(driver);
 
         homePage.clickOnMyAccount()
                 .clickOnRegister()
-                .setFirstName(firstNameBis)
-                .setLastName(lastNameBis)
-                .setEmail(emailBis)
-                .setPhone(phoneBis)
-                .setPassword(passwordBis)
-                .setPasswordConfirmation(passwordConfirmationBis)
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
+                .setPhone(phone)
+                .setPassword(password)
+                .setPasswordConfirmation(passwordConfirmation)
                 .selectRadioNewsletter("Yes")
                 .checkPrivacyPolicy()
                 .clickContinueThenFailed()
@@ -119,5 +126,24 @@ public class OP001_Signin {
     return new RegisterPage(driver);
     }
 
+    public AccountPage signinPassingCases(String firstName, String lastName, String email, String phone, String password) {
+
+        HomePage homePage = new HomePage(driver);
+
+        homePage.clickOnMyAccount()
+                .clickOnRegister()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
+                .setPhone(phone)
+                .setPassword(password)
+                .setPasswordConfirmation(password)
+                .selectRadioNewsletter("Yes")
+                .checkPrivacyPolicy()
+                .clickContinue()
+                .clickContinue();
+        return new AccountPage(driver);
+
+    }
 
 }
