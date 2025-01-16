@@ -1,7 +1,8 @@
 package AutomationProjects.Tests.Opencart;
 
 import AutomationProjects.Opencart.AccountPage;
-import AutomationProjects.Opencart.Credentials.OpencartAccount;
+import AutomationProjects.Opencart.Credentials.Account;
+import AutomationProjects.Opencart.Credentials.AccountFactory;
 import AutomationProjects.Opencart.HomePage;
 import AutomationProjects.Opencart.RegisterPage;
 import io.qameta.allure.Description;
@@ -20,33 +21,10 @@ import static AutomationProjects.Opencart.OpencartPage.*;
 
 public class OP001_Signin {
     AtomicReference<String> strRef = new AtomicReference<>("");
-    static String firstNameMax;
-    static String lastNameMax;
-    static String emailMax;
-    static String phoneMax;
-    static String passwordMax;
-    static String firstNameMin;
-    static String lastNameMin;
-    static String emailMin;
-    static String phoneMin;
-    static String passwordMin;
-
 
     @BeforeEach
     public void setUpBeforeEach() {
         setUp();
-        OpencartAccount.newAccountMaxCharacter();
-        firstNameMax = OpencartAccount.getFirstNameMax();
-        lastNameMax = OpencartAccount.getLastNameMax();
-        emailMax = OpencartAccount.getEmailMax();
-        phoneMax = OpencartAccount.getPhoneMax();
-        passwordMax = OpencartAccount.getPasswordMax();
-        OpencartAccount.newAccountMinCharacter();
-        firstNameMin = OpencartAccount.getFirstNameMin();
-        lastNameMin = OpencartAccount.getLastNameMin();
-        emailMin = OpencartAccount.getEmailMin();
-        phoneMin = OpencartAccount.getPhoneMin();
-        passwordMin = OpencartAccount.getPasswordMin();
     }
 
 
@@ -54,15 +32,15 @@ public class OP001_Signin {
     @DisplayName("OP001 - Passing cases")
     @Description("Passing cases high fields limit")
     public void Signin01() {
-
-        signinPassingCases(firstNameMax, lastNameMax, emailMax, phoneMax, passwordMax);
+        Account accountMax = new AccountFactory().newAccountMaxCharacter();
+        signinPassingCases(accountMax.getFirstName(), accountMax.getLastName(), accountMax.getEmail(), accountMax.getPhone(), accountMax.getPassword());
     }
     @Test
     @DisplayName("OP002 - Passing cases")
     @Description("Passing cases low fields limit")
     public void Signin02() {
-
-        signinPassingCases(firstNameMin, lastNameMin, emailMin, phoneMin, passwordMin);
+        Account accountMin = new AccountFactory().newAccountMinCharacter();
+        signinPassingCases(accountMin.getFirstName(), accountMin.getLastName(), accountMin.getEmail(), accountMin.getPhone(), accountMin.getPassword());
 
     }
 
