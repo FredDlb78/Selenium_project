@@ -53,6 +53,8 @@ public class RegisterPage extends OpencartPage{
     private WebElement errorMessagePassword;
     @FindBy(xpath = "//div[@class='text-danger' and contains(text(),'Password confirmation')]")
     private WebElement errorMessagePasswordConfirmation;
+    @FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
+    private WebElement errorMessagePrivacyPolicy;
 
 
     public RegisterPage selectRadioNewsletter(String radioButton) {
@@ -167,6 +169,12 @@ public class RegisterPage extends OpencartPage{
     @Step("Retrieve password confirmation error message")
     public RegisterPage retrievePasswordConfirmationErrorMessage(AtomicReference<String> strRef) {
         String error = errorMessagePasswordConfirmation.getText();
+        strRef.set(error);
+        return this;
+    }
+    @Step("Retrieve Privacy policy error message")
+    public RegisterPage retrievePrivacyPolicyErrorMessage(AtomicReference<String> strRef) {
+        String error = errorMessagePrivacyPolicy.getText();
         strRef.set(error);
         return this;
     }
