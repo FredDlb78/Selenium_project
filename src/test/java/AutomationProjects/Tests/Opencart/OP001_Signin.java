@@ -4,6 +4,7 @@ import AutomationProjects.Opencart.AccountPage;
 import AutomationProjects.Opencart.Credentials.Account;
 import AutomationProjects.Opencart.Credentials.AccountFactory;
 import AutomationProjects.Opencart.HomePage;
+import AutomationProjects.Opencart.OpencartPage;
 import AutomationProjects.Opencart.RegisterPage;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit5.AllureJunit5;
@@ -33,14 +34,18 @@ public class OP001_Signin {
     @Description("Passing cases high fields limit")
     public void Signin01() {
         Account accountMax = new AccountFactory().newAccountMaxCharacter();
-        signinPassingCases(accountMax.getFirstName(), accountMax.getLastName(), accountMax.getEmail(), accountMax.getPhone(), accountMax.getPassword());
+        HomePage homePage = new HomePage(driver);
+        homePage.signinPassingCases(accountMax.getFirstName(), accountMax.getLastName(), accountMax.getEmail(),
+                accountMax.getPhone(), accountMax.getPassword());
     }
     @Test
     @DisplayName("OP002 - Passing cases")
     @Description("Passing cases low fields limit")
     public void Signin02() {
         Account accountMin = new AccountFactory().newAccountMinCharacter();
-        signinPassingCases(accountMin.getFirstName(), accountMin.getLastName(), accountMin.getEmail(), accountMin.getPhone(), accountMin.getPassword());
+        HomePage homePage = new HomePage(driver);
+        homePage.signinPassingCases(accountMin.getFirstName(), accountMin.getLastName(), accountMin.getEmail(),
+                accountMin.getPhone(), accountMin.getPassword());
 
     }
 
@@ -85,7 +90,6 @@ public class OP001_Signin {
                 .setPassword(password)
                 .setPasswordConfirmation(passwordConfirmation)
                 .selectRadioNewsletter("Yes")
-                .checkPrivacyPolicy()
                 .clickContinueThenFailed()
                 .retrieveFirstNameErrorMessage(strRef)
                 .assertContains("First Name must be between 1 and 32 characters!", strRef, "Wrong error message for first name", RegisterPage.class)
@@ -99,29 +103,13 @@ public class OP001_Signin {
                 .assertContains("Password must be between 4 and 20 characters!", strRef, "Wrong error message for password", RegisterPage.class)
                 .setPassword(password2ndTry)
                 .clickContinueThenFailed()
+                .retrievePrivacyPolicyErrorMessage(strRef)
+                .assertContains("Warning: You must agree to the Privacy Policy!", strRef, "Wrong error message for Privacy Policy", RegisterPage.class)
                 .retrievePasswordConfirmationErrorMessage(strRef)
                 .assertContains("Password confirmation does not match password!", strRef, "Wrong error message for password confirmation", RegisterPage.class);
     return new RegisterPage(driver);
     }
 
-    public AccountPage signinPassingCases(String firstName, String lastName, String email, String phone, String password) {
 
-        HomePage homePage = new HomePage(driver);
-
-        homePage.clickOnMyAccount()
-                .clickOnRegister()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(email)
-                .setPhone(phone)
-                .setPassword(password)
-                .setPasswordConfirmation(password)
-                .selectRadioNewsletter("Yes")
-                .checkPrivacyPolicy()
-                .clickContinue()
-                .clickContinue();
-        return new AccountPage(driver);
-
-    }
 
 }

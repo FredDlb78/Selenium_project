@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static AutomationProjects.Opencart.OpencartPage.driver;
+
 public class HomePage extends OpencartPage{
     private WebDriver driver;
     private WebDriverWait wait;
@@ -42,11 +44,30 @@ public class HomePage extends OpencartPage{
         registerButton.click();
         return new RegisterPage(driver);
     }
-//    @Step("Click on Login")
-//    public LoginPage clickOnLogin() {
-//        wait.until(ExpectedConditions.visibilityOf(loginButton));
-//        loginButton.click();
-//        return new LoginPage(driver);
-//    }
+    @Step("Click on Login")
+    public LoginPage clickOnLogin() {
+        wait.until(ExpectedConditions.visibilityOf(loginButton));
+        loginButton.click();
+        return new LoginPage(driver);
+    }
 
+    public AccountPage signinPassingCases(String firstName, String lastName, String email, String phone, String password) {
+
+        HomePage homePage = new HomePage(driver);
+
+        homePage.clickOnMyAccount()
+                .clickOnRegister()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
+                .setPhone(phone)
+                .setPassword(password)
+                .setPasswordConfirmation(password)
+                .selectRadioNewsletter("Yes")
+                .checkPrivacyPolicy()
+                .clickContinue()
+                .clickContinue();
+        return new AccountPage(driver);
+
+    }
 }
