@@ -47,6 +47,18 @@ public class OpencartPage {
         }
         return PageFactory.initElements(driver, returnType);
     }
+    @Step("Assert True: Condition should be true")
+    public <P> P assertTrue(boolean condition, String errorMessage, Class<P> returnType) {
+        try {
+            if (!condition) {
+                throw new AssertionError(errorMessage + " | Condition evaluated to false.");
+            }
+        } catch (Exception e) {
+            Assertions.fail("Assertion failed: " + e.getMessage());
+        }
+        return PageFactory.initElements(driver, returnType);
+    }
+
 
 
 }
