@@ -2,6 +2,7 @@ package AutomationProjects.Opencart;
 
 import AutomationProjects.Demoblaze.PageObjectModel.ContactPopup;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,8 +11,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-
-import static AutomationProjects.Opencart.OpencartPage.driver;
 
 public class HomePage extends OpencartPage{
     private WebDriver driver;
@@ -50,7 +49,12 @@ public class HomePage extends OpencartPage{
         loginButton.click();
         return new LoginPage(driver);
     }
-
+    public ArticlePage clickArticle(String articleName) {
+        String xpath = String.format("//a[contains(text(), '%s')]", articleName);
+        WebElement article = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+        article.click();
+        return new ArticlePage (driver);
+    }
     public AccountPage signinPassingCases(String firstName, String lastName, String email, String phone, String password) {
 
         HomePage homePage = new HomePage(driver);
