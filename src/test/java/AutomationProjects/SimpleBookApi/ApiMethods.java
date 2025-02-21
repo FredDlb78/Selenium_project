@@ -5,7 +5,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
+
 import org.json.JSONObject;
+import org.junit.jupiter.api.Assertions;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -35,6 +41,49 @@ public class ApiMethods {
             // Vérification du contenu de la réponse
             String actualResponse = response.toString();
             assertEquals(expectedResponse, actualResponse, "Le contenu de la réponse est incorrect.");
+
+            System.out.println(successMessage + " Code de réponse de l'API : " + responseCode);
+
+            connection.disconnect();
+        } catch (Exception e) {
+            fail("Erreur : " + e.getMessage());
+        }
+    }
+
+    public static void testApiGetResponseWithParams(String apiURL, String endpoint, int expectedResponseCode, String expectedResponse, String successMessage, String errorMessage, Map<String, String> queryParams) {
+        try {
+            StringBuilder urlWithParams = new StringBuilder(apiURL + endpoint);
+            if (queryParams != null && !queryParams.isEmpty()) {
+                urlWithParams.append("?");
+                for (Map.Entry<String, String> entry : queryParams.entrySet()) {
+                    urlWithParams.append(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8.toString()))
+                            .append("=")
+                            .append(URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8.toString()))
+                            .append("&");
+                }
+            }
+
+            URL url = new URL(urlWithParams.toString());
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+
+            int responseCode = connection.getResponseCode();
+            assertEquals(expectedResponseCode, responseCode, errorMessage);
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    responseCode == 200 ? connection.getInputStream() : connection.getErrorStream()
+            ));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            String actualResponse = response.toString();
+            System.out.println(actualResponse);
+            assertTrue(actualResponse.contains(expectedResponse), "Le contenu de la réponse est incorrect.");
 
             System.out.println(successMessage + " Code de réponse de l'API : " + responseCode);
 
